@@ -1,0 +1,422 @@
+{
+  "cafeName": "AURELIA ROAST",
+  "tagline": "Crafted Coffee. Curated Dining. Effortless Moments.",
+  "welcomeMessage": "Welcome to Aurelia Roast. Select your table below to explore our curated menu, track your order live, or summon a host anytime.",
+  "firebaseUrl": "https://aurelia-roast-default-rtdb.asia-southeast1.firebasedatabase.app",
+  "currency": "₹",
+  "gstPercent": 5,
+  "serviceChargePercent": 5,
+  "tableCount": 12,
+  "categories": [
+    "Signature Espresso & Coffee",
+    "Iced Brews & Frappes",
+    "Artisanal Teas & Elixirs",
+    "All-Day Breakfast & Eggs",
+    "Gourmet Sandwiches & Burgers",
+    "Wood-Fired Pizzas & Flatbreads",
+    "Handcrafted Pastas & Mains",
+    "Patisserie & Desserts"
+  ],
+  "items": [
+    {
+      "id": "item_1",
+      "name": "Aurelia Gold Velvet Latte",
+      "category": "Signature Espresso & Coffee",
+      "price": 240,
+      "isVeg": true,
+      "available": true,
+      "description": "Double-origin espresso folded into silky micro-foamed milk with Madagascar vanilla bean.",
+      "image": ""
+    },
+    {
+      "id": "item_2",
+      "name": "Roasted Hazelnut Cortado",
+      "category": "Signature Espresso & Coffee",
+      "price": 220,
+      "isVeg": true,
+      "available": true,
+      "description": "Equal parts ristretto and warm toasted hazelnut milk for a bold, velvety finish.",
+      "image": ""
+    },
+    {
+      "id": "item_3",
+      "name": "Dark Mocha Truffle Cappuccino",
+      "category": "Signature Espresso & Coffee",
+      "price": 250,
+      "isVeg": true,
+      "available": true,
+      "description": "70% Belgian dark chocolate melted into rich espresso, dusted with raw cacao.",
+      "image": ""
+    },
+    {
+      "id": "item_4",
+      "name": "Single-Origin Pour Over (V60)",
+      "category": "Signature Espresso & Coffee",
+      "price": 230,
+      "isVeg": true,
+      "available": true,
+      "description": "Hand-brewed Chikmagalur estate Arabica with bright citrus and caramel tasting notes.",
+      "image": ""
+    },
+    {
+      "id": "item_5",
+      "name": "Spiced Cinnamon Flat White",
+      "category": "Signature Espresso & Coffee",
+      "price": 225,
+      "isVeg": true,
+      "available": true,
+      "description": "Velvety double-shot espresso infused with Ceylon cinnamon and organic jaggery.",
+      "image": ""
+    },
+    {
+      "id": "item_6",
+      "name": "18-Hour Bourbon Vanilla Cold Brew",
+      "category": "Iced Brews & Frappes",
+      "price": 260,
+      "isVeg": true,
+      "available": true,
+      "description": "Slow-steeped cold brew served over crystal ice with a float of vanilla sweet cream.",
+      "image": ""
+    },
+    {
+      "id": "item_7",
+      "name": "Salted Caramel Espresso Frappe",
+      "category": "Iced Brews & Frappes",
+      "price": 290,
+      "isVeg": true,
+      "available": true,
+      "description": "Blended espresso, house-made sea salt caramel, and whipped mascarpone cream.",
+      "image": ""
+    },
+    {
+      "id": "item_8",
+      "name": "Yuzu Espresso Tonic",
+      "category": "Iced Brews & Frappes",
+      "price": 270,
+      "isVeg": true,
+      "available": true,
+      "description": "Crisp botanical tonic water layered with Japanese yuzu citrus and a double espresso shot.",
+      "image": ""
+    },
+    {
+      "id": "item_9",
+      "name": "Iced Tiramisu Cloud Latte",
+      "category": "Iced Brews & Frappes",
+      "price": 285,
+      "isVeg": true,
+      "available": true,
+      "description": "Chilled espresso over milk topped with whipped mascarpone foam and cocoa dust.",
+      "image": ""
+    },
+    {
+      "id": "item_10",
+      "name": "Belgian Chocolate Hazelnut Shake",
+      "category": "Iced Brews & Frappes",
+      "price": 310,
+      "isVeg": true,
+      "available": true,
+      "description": "Thick roasted Piedmont hazelnut and dark chocolate milkshake with toasted nibs.",
+      "image": ""
+    },
+    {
+      "id": "item_11",
+      "name": "Ceremonial Uji Matcha Latte",
+      "category": "Artisanal Teas & Elixirs",
+      "price": 275,
+      "isVeg": true,
+      "available": true,
+      "description": "First-harvest Japanese green tea whisked with steamed oat or dairy milk.",
+      "image": ""
+    },
+    {
+      "id": "item_12",
+      "name": "Kashmiri Saffron Kahwa",
+      "category": "Artisanal Teas & Elixirs",
+      "price": 210,
+      "isVeg": true,
+      "available": true,
+      "description": "Fragrant green tea steeped with Pampore saffron strands, cardamom, and slivered almonds.",
+      "image": ""
+    },
+    {
+      "id": "item_13",
+      "name": "Hibiscus & Blood Orange Iced Tea",
+      "category": "Artisanal Teas & Elixirs",
+      "price": 220,
+      "isVeg": true,
+      "available": true,
+      "description": "Ruby-red hibiscus flower infusion shaken with fresh blood orange and mint leaves.",
+      "image": ""
+    },
+    {
+      "id": "item_14",
+      "name": "Smoked Earl Grey Lavender Fog",
+      "category": "Artisanal Teas & Elixirs",
+      "price": 240,
+      "isVeg": true,
+      "available": true,
+      "description": "Bergamot black tea infused with culinary lavender buds and vanilla steamed milk.",
+      "image": ""
+    },
+    {
+      "id": "item_15",
+      "name": "Smashed Hass Avocado & Feta Sourdough",
+      "category": "All-Day Breakfast & Eggs",
+      "price": 360,
+      "isVeg": true,
+      "available": true,
+      "description": "Charred country sourdough topped with lime-chili avocado, whipped feta, and pomegranate.",
+      "image": ""
+    },
+    {
+      "id": "item_16",
+      "name": "Truffle Mushroom Brioche Toast",
+      "category": "All-Day Breakfast & Eggs",
+      "price": 380,
+      "isVeg": true,
+      "available": true,
+      "description": "Sauteed wild shiitake and button mushrooms in white truffle cream on toasted brioche.",
+      "image": ""
+    },
+    {
+      "id": "item_17",
+      "name": "Fluffy Ricotta Hotcakes",
+      "category": "All-Day Breakfast & Eggs",
+      "price": 350,
+      "isVeg": true,
+      "available": true,
+      "description": "Three golden ricotta pancakes with honeycomb butter, caramelized banana, and maple syrup.",
+      "image": ""
+    },
+    {
+      "id": "item_18",
+      "name": "Turkish Cilbir Poached Eggs",
+      "category": "All-Day Breakfast & Eggs",
+      "price": 370,
+      "isVeg": false,
+      "available": true,
+      "description": "Two soft-poached farm eggs over whipped garlic labneh drizzled with warm Aleppo chili butter.",
+      "image": ""
+    },
+    {
+      "id": "item_19",
+      "name": "Smoked Chicken & Cheddar Omelette",
+      "category": "All-Day Breakfast & Eggs",
+      "price": 390,
+      "isVeg": false,
+      "available": true,
+      "description": "Three-egg French fold filled with hickory-smoked chicken, aged cheddar, and chives.",
+      "image": ""
+    },
+    {
+      "id": "item_20",
+      "name": "Classic Eggs Benedict with Turkey Ham",
+      "category": "All-Day Breakfast & Eggs",
+      "price": 420,
+      "isVeg": false,
+      "available": true,
+      "description": "Toasted English muffin, seared turkey ham, poached eggs, and silky saffron hollandaise.",
+      "image": ""
+    },
+    {
+      "id": "item_21",
+      "name": "Pesto Burrata & Heirloom Tomato Panini",
+      "category": "Gourmet Sandwiches & Burgers",
+      "price": 410,
+      "isVeg": true,
+      "available": true,
+      "description": "Pressed ciabatta with creamy burrata, basil-pine nut pesto, and sun-dried tomatoes.",
+      "image": ""
+    },
+    {
+      "id": "item_22",
+      "name": "Chargrilled Paneer Tikka Focaccia",
+      "category": "Gourmet Sandwiches & Burgers",
+      "price": 385,
+      "isVeg": true,
+      "available": true,
+      "description": "Rosemary focaccia layered with smoky tandoori cottage cheese, mint aioli, and pickled onions.",
+      "image": ""
+    },
+    {
+      "id": "item_23",
+      "name": "Crispy Portobello & Brie Burger",
+      "category": "Gourmet Sandwiches & Burgers",
+      "price": 430,
+      "isVeg": true,
+      "available": true,
+      "description": "Panko-crusted portobello mushroom patty, melted French brie, and caramelized onion jam.",
+      "image": ""
+    },
+    {
+      "id": "item_24",
+      "name": "Truffle Smash Chicken Burger",
+      "category": "Gourmet Sandwiches & Burgers",
+      "price": 460,
+      "isVeg": false,
+      "available": true,
+      "description": "Double juicy minced chicken smash patties, Gruyere cheese, truffle aioli, and brioche bun.",
+      "image": ""
+    },
+    {
+      "id": "item_25",
+      "name": "Peri-Peri Grilled Chicken Club",
+      "category": "Gourmet Sandwiches & Burgers",
+      "price": 440,
+      "isVeg": false,
+      "available": true,
+      "description": "Triple-decker toasted sourdough with flame-grilled chicken breast, fried egg, and garlic mayo.",
+      "image": ""
+    },
+    {
+      "id": "item_26",
+      "name": "Pulled BBQ Lamb Brioche Sub",
+      "category": "Gourmet Sandwiches & Burgers",
+      "price": 495,
+      "isVeg": false,
+      "available": true,
+      "description": "8-hour slow-braised spiced lamb shredded in smoky espresso BBQ glaze with slaw.",
+      "image": ""
+    },
+    {
+      "id": "item_27",
+      "name": "Margherita Verace Wood-Fired Pizza",
+      "category": "Wood-Fired Pizzas & Flatbreads",
+      "price": 450,
+      "isVeg": true,
+      "available": true,
+      "description": "48-hour fermented sourdough crust, San Marzano tomatoes, fior di latte, and fresh basil.",
+      "image": ""
+    },
+    {
+      "id": "item_28",
+      "name": "Wild Mushroom & Truffle Oil Flatbread",
+      "category": "Wood-Fired Pizzas & Flatbreads",
+      "price": 510,
+      "isVeg": true,
+      "available": true,
+      "description": "White mozzarella base topped with roasted forest mushrooms, thyme, and black truffle oil.",
+      "image": ""
+    },
+    {
+      "id": "item_29",
+      "name": "Charred Corn, Jalapeno & Goat Cheese Pizza",
+      "category": "Wood-Fired Pizzas & Flatbreads",
+      "price": 480,
+      "isVeg": true,
+      "available": true,
+      "description": "Sweet fire-roasted corn, pickled jalapenos, creamy chevre, and hot honey drizzle.",
+      "image": ""
+    },
+    {
+      "id": "item_30",
+      "name": "Smoked Chicken Pepperoni & Chili Honey Pizza",
+      "category": "Wood-Fired Pizzas & Flatbreads",
+      "price": 540,
+      "isVeg": false,
+      "available": true,
+      "description": "Crisp smoked chicken pepperoni cups, mozzarella, oregano, and house-infused chili honey.",
+      "image": ""
+    },
+    {
+      "id": "item_31",
+      "name": "Spiced Lamb Keema & Caramelized Onion Pizza",
+      "category": "Wood-Fired Pizzas & Flatbreads",
+      "price": 560,
+      "isVeg": false,
+      "available": true,
+      "description": "Aromatic minced lamb, slow-cooked sweet onions, aged provolone, and fresh coriander.",
+      "image": ""
+    },
+    {
+      "id": "item_32",
+      "name": "Truffle Wild Mushroom Tagliatelle",
+      "category": "Handcrafted Pastas & Mains",
+      "price": 470,
+      "isVeg": true,
+      "available": true,
+      "description": "Fresh ribbon pasta tossed in roasted garlic-parmesan cream and porcini mushroom ragu.",
+      "image": ""
+    },
+    {
+      "id": "item_33",
+      "name": "Burrata & Roasted Cherry Tomato Rigatoni",
+      "category": "Handcrafted Pastas & Mains",
+      "price": 460,
+      "isVeg": true,
+      "available": true,
+      "description": "Al dente rigatoni in slow-simmered marinara crowned with a whole cold creamy burrata.",
+      "image": ""
+    },
+    {
+      "id": "item_34",
+      "name": "Creamy Cajun Chicken Alfredo Penne",
+      "category": "Handcrafted Pastas & Mains",
+      "price": 490,
+      "isVeg": false,
+      "available": true,
+      "description": "Pan-seared Cajun chicken strips over penne in aged parmesan and cracked pepper cream.",
+      "image": ""
+    },
+    {
+      "id": "item_35",
+      "name": "Garlic Butter Prawn Aglio e Olio",
+      "category": "Handcrafted Pastas & Mains",
+      "price": 550,
+      "isVeg": false,
+      "available": true,
+      "description": "Spaghetti tossed with jumbo tiger prawns, golden garlic chips, extra-virgin olive oil, and chili.",
+      "image": ""
+    },
+    {
+      "id": "item_36",
+      "name": "Herb-Crusted Grilled Chicken Steak",
+      "category": "Handcrafted Pastas & Mains",
+      "price": 530,
+      "isVeg": false,
+      "available": true,
+      "description": "Rosemary-marinated chicken breast with truffle mashed potatoes, grilled asparagus, and jus.",
+      "image": ""
+    },
+    {
+      "id": "item_37",
+      "name": "San Sebastian Burnt Basque Cheesecake",
+      "category": "Patisserie & Desserts",
+      "price": 320,
+      "isVeg": true,
+      "available": true,
+      "description": "Caramelized crust with a molten cream-cheese center served with warm Belgian chocolate sauce.",
+      "image": ""
+    },
+    {
+      "id": "item_38",
+      "name": "Aurelia Espresso Tiramisu (Eggless)",
+      "category": "Patisserie & Desserts",
+      "price": 340,
+      "isVeg": true,
+      "available": true,
+      "description": "Savoiardi biscuits soaked in signature Aurelia espresso layered with mascarpone mousse.",
+      "image": ""
+    },
+    {
+      "id": "item_39",
+      "name": "Warm Pistachio Kunafa Chocolate Fondant",
+      "category": "Patisserie & Desserts",
+      "price": 360,
+      "isVeg": true,
+      "available": true,
+      "description": "Molten dark chocolate cake filled with crispy roasted pistachio kunafa cream.",
+      "image": ""
+    },
+    {
+      "id": "item_40",
+      "name": "Classic French Creme Brulee",
+      "category": "Patisserie & Desserts",
+      "price": 310,
+      "isVeg": false,
+      "available": true,
+      "description": "Silky vanilla bean egg custard beneath a crisp, torch-caramelized raw sugar crust.",
+      "image": ""
+    }
+  ]
+}
