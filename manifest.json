@@ -1,0 +1,17 @@
+{
+  "name": "AURELIA ROAST Manager",
+  "short_name": "Aurelia Admin",
+  "start_url": "/Aurelia-roast/admin.html",
+  "scope": "/Aurelia-roast/",
+  "display": "standalone",
+  "background_color": "#0d0b0a",
+  "theme_color": "#0d0b0a",
+  "icons": [
+    {
+      "src": "https://cdn-icons-png.flaticon.com/512/924/924514.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
