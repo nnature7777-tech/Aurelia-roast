@@ -531,11 +531,20 @@
       margin: 24px auto;
       cursor: pointer;
       box-shadow: 0 0 40px rgba(212, 175, 55, 0.22);
-      transition: transform 0.15s ease;
+      transition: transform 0.15s ease, filter 0.35s ease, opacity 0.35s ease;
     }
-    .ring-btn:active { transform: scale(0.94); }
+    .ring-btn:active:not(:disabled) { transform: scale(0.94); }
+    .ring-btn.cooldown, .ring-btn:disabled {
+      filter: saturate(0%) brightness(0.65);
+      opacity: 0.6;
+      border-color: #6b645e;
+      box-shadow: none;
+      cursor: not-allowed;
+      transform: none;
+    }
     .ring-icon { font-size: 3.2rem; margin-bottom: 8px; }
     .ring-text { font-weight: 700; font-size: 0.95rem; letter-spacing: 1px; text-transform: uppercase; }
+    .ring-sub { font-size: 0.72rem; color: var(--text-secondary); margin-top: 4px; font-weight: 600; }
 
     .quick-reasons {
       display: flex;
@@ -623,8 +632,8 @@
       box-shadow: 0 10px 30px rgba(0,0,0,0.7);
     }
   </style>
-</head>
-<body>
+  </head>
+  <body>
 
   <div id="toast" class="toast"></div>
 
@@ -658,7 +667,6 @@
 
     <!-- TAB 1: MENU -->
     <main id="tab-menu" class="tab-section active">
-      <!-- ONLY VEG / ONLY NON-VEG SECTION SWITCHER -->
       <div class="diet-switcher">
         <button class="diet-btn active-all" id="diet-all" onclick="setDietSection('all')">All Menu</button>
         <button class="diet-btn" id="diet-veg" onclick="setDietSection('veg')"><span class="dot-veg"></span> Only Veg</button>
@@ -686,10 +694,12 @@
           Need water, extra cutlery, or help with your bill? Tap the bell to notify our staff at <strong>Table <span id="help-table-label">1</span></strong>.
         </p>
 
-        <button class="ring-btn" onclick="ringWaiter()">
+        <button class="ring-btn" id="ring-waiter-btn" onclick="ringWaiter()">
           <span class="ring-icon">🔔</span>
-          <span class="ring-text">Ring Waiter</span>
+          <span class="ring-text" id="ring-btn-text">Ring Waiter</span>
+          <span class="ring-sub" id="ring-btn-sub">Tap to summon</span>
         </button>
+
         <p style="font-size:0.75rem; text-transform:uppercase; letter-spacing:1.2px; color:var(--gold); margin-bottom:10px;">Optional Quick Note</p>
         <div class="quick-reasons" id="reason-chips">
           <button class="reason-chip active" onclick="selectReason(this, 'General Assistance')">General Assistance</button>
@@ -747,9 +757,19 @@
     let selectedTable = 1;
     let currentDiet = 'all';
     let currentCategory = 'All';
-    let cart = JSON.parse(localStorage.getItem('aurelia_cart') || '{}');
+
+    // UNIQUE SESSION PER TAB / NEW CUSTOMER (Starts with 0 orders & empty cart)
+    let sessionId = sessionStorage.getItem('aurelia_session_id');
+    if (!sessionId) {
+      sessionId = 'sess_' + Date.now() + '_' + Math.random().toString(36).slice(2, 8);
+      sessionStorage.setItem('aurelia_session_id', sessionId);
+    }
+
+    let cart = JSON.parse(sessionStorage.getItem('aurelia_cart') || '{}');
     let selectedReason = 'General Assistance';
     let pollTimer = null;
+    let cooldownTimer = null;
+    const COOLDOWN_MS = 5 * 60 * 1000; // 5 minutes
 
     function showToast(msg) {
       const t = document.getElementById('toast');
@@ -775,7 +795,7 @@
 
       const params = new URLSearchParams(window.location.search);
       const urlTable = parseInt(params.get('table'));
-      const savedTable = parseInt(localStorage.getItem('aurelia_table'));
+      const savedTable = parseInt(sessionStorage.getItem('aurelia_table'));
       const count = (menuData && menuData.tableCount) || 12;
 
       if (urlTable >= 1 && urlTable <= count) selectedTable = urlTable;
@@ -785,6 +805,7 @@
       renderCategoryPills();
       renderMenu();
       updateCartUI();
+      startCooldownTicker();
     }
 
     function renderTableGrid(count) {
@@ -803,7 +824,7 @@
     }
 
     function enterCafe() {
-      localStorage.setItem('aurelia_table', selectedTable);
+      sessionStorage.setItem('aurelia_table', selectedTable);
       document.getElementById('active-table-num').textContent = selectedTable;
       document.getElementById('orders-table-label').textContent = selectedTable;
       document.getElementById('help-table-label').textContent = selectedTable;
@@ -917,7 +938,7 @@
     function updateQty(id, delta) {
       cart[id] = (cart[id] || 0) + delta;
       if (cart[id] <= 0) delete cart[id];
-      localStorage.setItem('aurelia_cart', JSON.stringify(cart));
+      sessionStorage.setItem('aurelia_cart', JSON.stringify(cart));
       renderMenu();
       updateCartUI();
       if (document.getElementById('cart-modal').classList.contains('open')) renderCartModal();
@@ -1010,6 +1031,7 @@
       const { subtotal, gst, sc, total } = getCartTotals();
 
       const orderPayload = {
+        sessionId,
         table: selectedTable,
         items: itemsList,
         subtotal,
@@ -1030,7 +1052,7 @@
         if (!res.ok) throw new Error('Network error');
 
         cart = {};
-        localStorage.removeItem('aurelia_cart');
+        sessionStorage.removeItem('aurelia_cart');
         document.getElementById('order-note').value = '';
         closeCart();
         renderMenu();
@@ -1054,26 +1076,26 @@
         const ordersObj = await ordersRes.json();
         const callsObj = await callsRes.json();
 
-        const tableOrders = [];
+        const myOrders = [];
         if (ordersObj) {
           for (const [key, val] of Object.entries(ordersObj)) {
-            if (Number(val.table) === Number(selectedTable) && val.status !== 'paid') {
-              tableOrders.push({ key, ...val });
+            if (val.sessionId === sessionId && val.status !== 'paid') {
+              myOrders.push({ key, ...val });
             }
           }
         }
-        tableOrders.sort((a, b) => b.createdAt - a.createdAt);
-        renderOrdersList(tableOrders);
+        myOrders.sort((a, b) => b.createdAt - a.createdAt);
+        renderOrdersList(myOrders);
 
         const badge = document.getElementById('orders-badge');
-        if (tableOrders.length > 0) {
+        if (myOrders.length > 0) {
           badge.style.display = 'inline-block';
-          badge.textContent = tableOrders.length;
+          badge.textContent = myOrders.length;
         } else {
           badge.style.display = 'none';
         }
 
-        const activeCall = callsObj ? Object.values(callsObj).find(c => Number(c.table) === Number(selectedTable) && c.status === 'active') : null;
+        const activeCall = callsObj ? Object.values(callsObj).find(c => c.sessionId === sessionId && c.status === 'active') : null;
         const callStatusBox = document.getElementById('active-call-status');
         if (activeCall) {
           callStatusBox.innerHTML = `<div class="payment-banner">🔔 Waiter summoned for Table ${selectedTable} (${activeCall.reason}). A host will be with you shortly!</div>`;
@@ -1090,8 +1112,8 @@
       if (orders.length === 0) {
         container.innerHTML = `
           <div style="text-align:center; padding:40px 16px; background:var(--bg-card); border-radius:18px; border:1px solid var(--border);">
-            <p style="font-size:1.1rem; color:var(--gold-light); margin-bottom:6px;">No active orders for Table ${selectedTable}</p>
-            <p style="font-size:0.84rem; color:var(--text-secondary); margin-bottom:16px;">Explore our menu to place your first order.</p>
+            <p style="font-size:1.1rem; color:var(--gold-light); margin-bottom:6px;">No active orders yet</p>
+            <p style="font-size:0.84rem; color:var(--text-secondary); margin-bottom:16px;">Explore our menu to place your first order for Table ${selectedTable}.</p>
             <button class="btn-primary" style="max-width:200px;" onclick="switchTab('menu')">Browse Menu</button>
           </div>
         `;
@@ -1116,7 +1138,7 @@
           <div class="order-card">
             <div class="order-top">
               <div>
-                <div style="font-size:0.75rem; color:var(--text-muted);">Placed at ${timeStr}</div>
+                <div style="font-size:0.75rem; color:var(--text-muted);">Table ${o.table} • Placed at ${timeStr}</div>
                 <div style="font-weight:700; font-size:1.05rem; color:var(--gold-light);">Total: ${currency}${o.total}</div>
               </div>
               <span class="status-pill ${cls}">${label}</span>
@@ -1149,18 +1171,52 @@
       el.classList.add('active');
     }
 
+    function updateCooldownUI() {
+      const btn = document.getElementById('ring-waiter-btn');
+      const txt = document.getElementById('ring-btn-text');
+      const sub = document.getElementById('ring-btn-sub');
+      const lastRing = Number(sessionStorage.getItem('aurelia_last_ring') || 0);
+      const remaining = COOLDOWN_MS - (Date.now() - lastRing);
+
+      if (remaining > 0) {
+        btn.disabled = true;
+        btn.classList.add('cooldown');
+        const mins = Math.floor(remaining / 60000);
+        const secs = Math.floor((remaining % 60000) / 1000);
+        txt.textContent = 'Waiter Notified';
+        sub.textContent = `Cooldown ${mins}:${secs < 10 ? '0' : ''}${secs}`;
+      } else {
+        btn.disabled = false;
+        btn.classList.remove('cooldown');
+        txt.textContent = 'Ring Waiter';
+        sub.textContent = 'Tap to summon';
+      }
+    }
+
+    function startCooldownTicker() {
+      updateCooldownUI();
+      if (cooldownTimer) clearInterval(cooldownTimer);
+      cooldownTimer = setInterval(updateCooldownUI, 1000);
+    }
+
     async function ringWaiter() {
+      const lastRing = Number(sessionStorage.getItem('aurelia_last_ring') || 0);
+      if (Date.now() - lastRing < COOLDOWN_MS) return;
+
       try {
         await fetch(`${firebaseUrl}/waiterCalls.json`, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({
+            sessionId,
             table: selectedTable,
             reason: selectedReason,
             status: 'active',
             createdAt: Date.now()
           })
         });
+        sessionStorage.setItem('aurelia_last_ring', String(Date.now()));
+        updateCooldownUI();
         showToast(`🔔 Waiter alerted for Table ${selectedTable}!`);
         fetchLiveOrders();
       } catch (e) {
@@ -1171,6 +1227,4 @@
     init();
   </script>
 </body>
-  </html>
-
-        
+</html>
