@@ -1,0 +1,891 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>AURELIA ROAST | Manager Command Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@600;700&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0d0b0a;
+      --bg-secondary: #171311;
+      --bg-card: #1f1916;
+      --bg-elevated: #2a221e;
+      --gold: #d4af37;
+      --gold-light: #f0d68a;
+      --gold-dim: rgba(212, 175, 55, 0.14);
+      --text-primary: #f7f2eb;
+      --text-secondary: #b8aca0;
+      --text-muted: #7e7267;
+      --border: rgba(212, 175, 55, 0.24);
+      --veg: #22c55e;
+      --nonveg: #ef4444;
+      --danger: #ef4444;
+      --radius: 16px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      padding-bottom: 40px;
+    }
+
+    .serif { font-family: 'Cormorant Garamond', serif; }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 40;
+      background: rgba(13, 11, 10, 0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+      padding: 14px 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .brand-area h1 { font-size: 1.4rem; letter-spacing: 2px; color: var(--gold-light); }
+    .brand-area span { font-size: 0.72rem; color: var(--gold); text-transform: uppercase; letter-spacing: 1px; }
+
+    .main-tabs {
+      display: flex;
+      gap: 8px;
+      background: var(--bg-secondary);
+      padding: 5px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+    }
+
+    .main-tab-btn {
+      padding: 8px 16px;
+      border-radius: 9px;
+      border: none;
+      background: transparent;
+      color: var(--text-secondary);
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+    .main-tab-btn.active {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #0d0b0a;
+    }
+
+    .container { max-width: 820px; margin: 0 auto; padding: 18px 16px; }
+    .section-view { display: none; }
+    .section-view.active { display: block; }
+
+    /* WAITER RING ALERTS */
+    .waiter-alert-box {
+      background: linear-gradient(135deg, rgba(239, 68, 68, 0.25), rgba(185, 28, 28, 0.15));
+      border: 1.5px solid #ef4444;
+      border-radius: 16px;
+      padding: 14px 16px;
+      margin-bottom: 16px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      animation: pulseBorder 1.5s infinite;
+    }
+
+    @keyframes pulseBorder {
+      0%, 100% { box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
+      50% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.45); }
+    }
+
+    .dismiss-btn {
+      background: #ef4444;
+      color: #fff;
+      border: none;
+      padding: 9px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+
+    /* STATS STRIP */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+
+    .stat-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px;
+      text-align: center;
+    }
+    .stat-val { font-size: 1.35rem; font-weight: 700; color: var(--gold-light); }
+    .stat-lbl { font-size: 0.72rem; color: var(--text-secondary); margin-top: 2px; }
+
+    /* LIVE ORDER CARDS */
+    .order-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 14px;
+    }
+
+    .order-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 12px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .table-pill {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #0d0b0a;
+      font-weight: 800;
+      padding: 5px 12px;
+      border-radius: 8px;
+      font-size: 0.9rem;
+    }
+
+    .order-items { margin-bottom: 12px; font-size: 0.88rem; }
+    .order-item-row {
+      display: flex;
+      justify-content: space-between;
+      padding: 4px 0;
+    }
+
+    .note-banner {
+      background: rgba(245, 158, 11, 0.14);
+      border-left: 3px solid #f59e0b;
+      padding: 8px 10px;
+      font-size: 0.8rem;
+      color: #fcd34d;
+      border-radius: 6px;
+      margin-bottom: 12px;
+    }
+
+    .stage-buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .stage-btn {
+      padding: 9px 4px;
+      border-radius: 9px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--bg-primary);
+      color: var(--text-secondary);
+      font-size: 0.74rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .stage-btn.active-got_it { background: #2563eb; color: #fff; border-color: #60a5fa; }
+    .stage-btn.active-process { background: #d97706; color: #fff; border-color: #fbbf24; }
+    .stage-btn.active-done { background: #059669; color: #fff; border-color: #34d399; }
+    .stage-btn.active-payment_time { background: var(--gold); color: #0d0b0a; border-color: var(--gold-light); }
+
+    .paid-btn {
+      width: 100%;
+      padding: 10px;
+      border-radius: 10px;
+      border: 1px solid rgba(16, 185, 129, 0.45);
+      background: rgba(16, 185, 129, 0.14);
+      color: #34d399;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+      margin-top: 4px;
+    }
+
+    /* MENU EDITOR & GITHUB SYNC */
+    .card-box {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      margin-bottom: 16px;
+    }
+
+    .card-title {
+      font-size: 1.25rem;
+      color: var(--gold-light);
+      margin-bottom: 12px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 10px;
+    }
+
+    label.field-lbl {
+      font-size: 0.75rem;
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+      display: block;
+      margin-bottom: 4px;
+    }
+
+    input, select, textarea {
+      width: 100%;
+      padding: 11px 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: var(--bg-primary);
+      color: var(--text-primary);
+      font-size: 0.88rem;
+      font-family: inherit;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, var(--gold-light), var(--gold));
+      color: #0d0b0a;
+      border: none;
+      padding: 12px 16px;
+      border-radius: 11px;
+      font-weight: 700;
+      font-size: 0.88rem;
+      cursor: pointer;
+      width: 100%;
+    }
+
+    .btn-outline {
+      background: var(--gold-dim);
+      color: var(--gold-light);
+      border: 1px solid var(--gold);
+      padding: 10px 14px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.82rem;
+      cursor: pointer;
+    }
+
+    .menu-admin-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 12px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+      gap: 10px;
+    }
+
+    .qr-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+      gap: 12px;
+      margin-top: 12px;
+    }
+
+    .qr-card {
+      background: #fff;
+      color: #0d0b0a;
+      border-radius: 12px;
+      padding: 12px;
+      text-align: center;
+    }
+    .qr-card img { width: 110px; height: 110px; margin: 6px auto; display: block; }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--bg-elevated);
+      border: 1px solid var(--gold);
+      color: var(--gold-light);
+      padding: 11px 18px;
+      border-radius: 12px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      z-index: 100;
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="toast" class="toast"></div>
+
+  <header class="topbar">
+    <div class="brand-area">
+      <h1 class="serif">AURELIA ROAST</h1>
+      <span>Manager Command Center</span>
+    </div>
+    <div class="main-tabs">
+      <button class="main-tab-btn active" id="tab-btn-dashboard" onclick="switchAdminTab('dashboard')">Live Dashboard</button>
+      <button class="main-tab-btn" id="tab-btn-editor" onclick="switchAdminTab('editor')">Menu Editor & QR</button>
+    </div>
+  </header>
+
+  <div class="container">
+    <!-- SECTION 1: LIVE DASHBOARD -->
+    <section id="view-dashboard" class="section-view active">
+      <div id="waiter-alerts-container"></div>
+
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-val" id="stat-active">0</div>
+          <div class="stat-lbl">Active Orders</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="stat-calls">0</div>
+          <div class="stat-lbl">Waiter Alerts</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-val" id="stat-revenue">₹0</div>
+          <div class="stat-lbl">Active Bill Value</div>
+        </div>
+      </div>
+
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:12px;">
+        <h2 class="serif" style="font-size:1.5rem; color:var(--gold-light);">Live Table Orders</h2>
+        <button class="btn-outline" onclick="pollDashboard()">↻ Refresh</button>
+      </div>
+
+      <div id="live-orders-container">
+        <p style="color:var(--text-muted); text-align:center; padding:30px;">Connecting to live kitchen feed...</p>
+      </div>
+    </section>
+
+    <!-- SECTION 2: MENU EDITOR & QR GENERATOR -->
+    <section id="view-editor" class="section-view">
+      <!-- GITHUB TOKEN CONFIG -->
+      <div class="card-box">
+        <h3 class="card-title serif">1. GitHub Sync Settings</h3>
+        <p style="font-size:0.8rem; color:var(--text-secondary); margin-bottom:12px;">
+          Paste your GitHub Fine-Grained Personal Access Token (stored privately in this browser) to publish menu edits and dish photos directly to <strong>nnature7777-tech/aurelia-roast</strong>.
+        </p>
+        <div class="form-grid">
+          <div>
+            <label class="field-lbl">GitHub Repository (owner/repo)</label>
+            <input type="text" id="gh-repo" value="nnature7777-tech/aurelia-roast" />
+          </div>
+          <div>
+            <label class="field-lbl">GitHub Fine-Grained Token</label>
+            <input type="password" id="gh-token" placeholder="github_pat_..." />
+          </div>
+          <button class="btn-gold" onclick="saveGitHubCreds()">Save Token & Sync Latest Menu</button>
+        </div>
+      </div>
+
+      <!-- CAFE SETTINGS -->
+      <div class="card-box">
+        <h3 class="card-title serif">2. Cafe & Tax Settings</h3>
+        <div class="form-grid" style="grid-template-columns: 1fr 1fr;">
+          <div>
+            <label class="field-lbl">Cafe Name</label>
+            <input type="text" id="cfg-name" />
+          </div>
+          <div>
+            <label class="field-lbl">Tables Count</label>
+            <input type="number" id="cfg-tables" value="12" />
+          </div>
+          <div>
+            <label class="field-lbl">GST %</label>
+            <input type="number" id="cfg-gst" value="5" />
+          </div>
+          <div>
+            <label class="field-lbl">Service Charge %</label>
+            <input type="number" id="cfg-sc" value="5" />
+          </div>
+        </div>
+        <div style="margin-top:10px;">
+          <label class="field-lbl">Welcome Message</label>
+          <textarea id="cfg-welcome" rows="2"></textarea>
+        </div>
+      </div>
+
+      <!-- ADD / EDIT DISH -->
+      <div class="card-box">
+        <h3 class="card-title serif" id="form-heading">3. Add New Menu Item</h3>
+        <input type="hidden" id="edit-item-id" />
+        <div class="form-grid">
+          <div>
+            <label class="field-lbl">Dish / Drink Name</label>
+            <input type="text" id="item-name" placeholder="e.g. Pistachio Rose Latte" />
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div>
+              <label class="field-lbl">Category</label>
+              <select id="item-category"></select>
+            </div>
+            <div>
+              <label class="field-lbl">Price (₹)</label>
+              <input type="number" id="item-price" placeholder="250" />
+            </div>
+          </div>
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div>
+              <label class="field-lbl">Dietary Section</label>
+              <select id="item-veg">
+                <option value="true">Pure Veg</option>
+                <option value="false">Non-Veg</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-lbl">Status</label>
+              <select id="item-avail">
+                <option value="true">In Stock</option>
+                <option value="false">Sold Out</option>
+              </select>
+            </div>
+          </div>
+          <div>
+            <label class="field-lbl">Description</label>
+            <textarea id="item-desc" rows="2" placeholder="Short appetizing description..."></textarea>
+          </div>
+          <div>
+            <label class="field-lbl">Dish Photo (Uploads to GitHub)</label>
+            <input type="file" id="item-photo-file" accept="image/*" />
+            <input type="hidden" id="item-image-url" />
+          </div>
+          <div style="display:flex; gap:8px;">
+            <button class="btn-gold" onclick="saveMenuItem()">Add / Update Item</button>
+            <button class="btn-outline" onclick="resetItemForm()">Clear</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- PUBLISH BUTTON & CURRENT MENU LIST -->
+      <div class="card-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; margin-bottom:14px;">
+          <h3 class="card-title serif" style="margin:0;">4. Current Menu (<span id="menu-count">0</span> Items)</h3>
+          <button class="btn-gold" style="width:auto;" id="publish-btn" onclick="publishMenuToGitHub()">🚀 Publish Changes to Live Site</button>
+        </div>
+        <div id="admin-menu-list"></div>
+      </div>
+
+      <!-- PRINTABLE TABLE QR CODES -->
+      <div class="card-box">
+        <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px;">
+          <h3 class="card-title serif" style="margin:0;">5. Printable Table QR Codes</h3>
+          <button class="btn-outline" onclick="window.print()">🖨️ Print QR Sheet</button>
+        </div>
+        <p style="font-size:0.78rem; color:var(--text-secondary); margin-top:6px;">
+          Scanning a table's QR code automatically selects that table on the welcome screen.
+        </p>
+        <div class="qr-grid" id="qr-grid"></div>
+      </div>
+    </section>
+  </div>
+
+  <script>
+    let firebaseUrl = "https://aurelia-roast-default-rtdb.asia-southeast1.firebasedatabase.app";
+    let menuData = null;
+    let lastAlertCount = 0;
+
+    function showToast(msg) {
+      const t = document.getElementById('toast');
+      t.textContent = msg;
+      t.style.display = 'block';
+      setTimeout(() => { t.style.display = 'none'; }, 3200);
+    }
+
+    function playChime() {
+      try {
+        const ctx = new (window.AudioContext || window.webkitAudioContext)();
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(880, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(587.33, ctx.currentTime + 0.35);
+        gain.gain.setValueAtTime(0.25, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.4);
+      } catch (e) {}
+    }
+
+    function switchAdminTab(tab) {
+      document.getElementById('view-dashboard').classList.toggle('active', tab === 'dashboard');
+      document.getElementById('view-editor').classList.toggle('active', tab === 'editor');
+      document.getElementById('tab-btn-dashboard').classList.toggle('active', tab === 'dashboard');
+      document.getElementById('tab-btn-editor').classList.toggle('active', tab === 'editor');
+    }
+
+    async function initAdmin() {
+      const savedRepo = localStorage.getItem('aurelia_gh_repo');
+      const savedToken = localStorage.getItem('aurelia_gh_token');
+      if (savedRepo) document.getElementById('gh-repo').value = savedRepo;
+      if (savedToken) document.getElementById('gh-token').value = savedToken;
+
+      await loadMenuData();
+      pollDashboard();
+      setInterval(pollDashboard, 3000);
+    }
+
+    async function loadMenuData() {
+      try {
+        const res = await fetch('menu-data.json?v=' + Date.now());
+        menuData = await res.json();
+        if (menuData.firebaseUrl) firebaseUrl = menuData.firebaseUrl.replace(/\/$/, '');
+
+        document.getElementById('cfg-name').value = menuData.cafeName || 'AURELIA ROAST';
+        document.getElementById('cfg-tables').value = menuData.tableCount || 12;
+        document.getElementById('cfg-gst').value = menuData.gstPercent ?? 5;
+        document.getElementById('cfg-sc').value = menuData.serviceChargePercent ?? 5;
+        document.getElementById('cfg-welcome').value = menuData.welcomeMessage || '';
+
+        const catSel = document.getElementById('item-category');
+        catSel.innerHTML = (menuData.categories || []).map(c => `<option value="${c}">${c}</option>`).join('');
+
+        renderAdminMenuList();
+        renderTableQRs();
+      } catch (e) {
+        showToast('Error loading menu-data.json');
+      }
+    }
+
+    /* LIVE DASHBOARD FUNCTIONS */
+    async function pollDashboard() {
+      try {
+        const [ordersRes, callsRes] = await Promise.all([
+          fetch(`${firebaseUrl}/orders.json`),
+          fetch(`${firebaseUrl}/waiterCalls.json`)
+        ]);
+        const ordersObj = await ordersRes.json();
+        const callsObj = await callsRes.json();
+
+        const activeCalls = [];
+        if (callsObj) {
+          for (const [key, val] of Object.entries(callsObj)) {
+            if (val.status === 'active') activeCalls.push({ key, ...val });
+          }
+        }
+        activeCalls.sort((a, b) => b.createdAt - a.createdAt);
+
+        if (activeCalls.length > lastAlertCount) playChime();
+        lastAlertCount = activeCalls.length;
+        renderWaiterAlerts(activeCalls);
+
+        const activeOrders = [];
+        let activeBillSum = 0;
+        if (ordersObj) {
+          for (const [key, val] of Object.entries(ordersObj)) {
+            if (val.status !== 'paid') {
+              activeOrders.push({ key, ...val });
+              activeBillSum += Number(val.total || 0);
+            }
+          }
+        }
+        activeOrders.sort((a, b) => b.createdAt - a.createdAt);
+
+        document.getElementById('stat-active').textContent = activeOrders.length;
+        document.getElementById('stat-calls').textContent = activeCalls.length;
+        document.getElementById('stat-revenue').textContent = '₹' + activeBillSum;
+
+        renderLiveOrders(activeOrders);
+      } catch (e) {}
+    }
+
+    function renderWaiterAlerts(calls) {
+      const box = document.getElementById('waiter-alerts-container');
+      if (calls.length === 0) {
+        box.innerHTML = '';
+        return;
+      }
+      box.innerHTML = calls.map(c => {
+        const timeStr = new Date(c.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        return `
+          <div class="waiter-alert-box">
+            <div>
+              <div style="font-weight:800; font-size:1rem; color:#fca5a5;">🔔 WAITER NEEDED — TABLE ${c.table}</div>
+              <div style="font-size:0.82rem; color:#fee2e2;">Reason: ${c.reason} • ${timeStr}</div>
+            </div>
+            <button class="dismiss-btn" onclick="dismissCall('${c.key}')">Acknowledge ✓</button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function dismissCall(key) {
+      await fetch(`${firebaseUrl}/waiterCalls/${key}.json`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status: 'resolved' })
+      });
+      showToast('Waiter call acknowledged');
+      pollDashboard();
+    }
+
+    function renderLiveOrders(orders) {
+      const container = document.getElementById('live-orders-container');
+      if (orders.length === 0) {
+        container.innerHTML = `<div class="card-box" style="text-align:center; color:var(--text-muted); padding:32px;">No active orders right now. New customer orders will appear here automatically.</div>`;
+        return;
+      }
+
+      container.innerHTML = orders.map(o => {
+        const timeStr = new Date(o.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+        return `
+          <div class="order-card">
+            <div class="order-head">
+              <div style="display:flex; align-items:center; gap:10px;">
+                <span class="table-pill">TABLE ${o.table}</span>
+                <span style="font-size:0.78rem; color:var(--text-secondary);">${timeStr}</span>
+              </div>
+              <div style="font-weight:800; font-size:1.05rem; color:var(--gold-light);">₹${o.total}</div>
+            </div>
+
+            <div class="order-items">
+              ${o.items.map(i => `
+                <div class="order-item-row">
+                  <span><strong>${i.qty}×</strong> ${i.name}</span>
+                  <span style="color:var(--text-secondary);">₹${i.price * i.qty}</span>
+                </div>
+              `).join('')}
+            </div>
+
+            ${o.note ? `<div class="note-banner">📝 Note: ${o.note}</div>` : ''}
+
+            <div class="stage-buttons">
+              <button class="stage-btn ${o.status === 'got_it' ? 'active-got_it' : ''}" onclick="setOrderStatus('${o.key}', 'got_it')">1. Got It</button>
+              <button class="stage-btn ${o.status === 'process' ? 'active-process' : ''}" onclick="setOrderStatus('${o.key}', 'process')">2. Process</button>
+              <button class="stage-btn ${o.status === 'done' ? 'active-done' : ''}" onclick="setOrderStatus('${o.key}', 'done')">3. Done</button>
+              <button class="stage-btn ${o.status === 'payment_time' ? 'active-payment_time' : ''}" onclick="setOrderStatus('${o.key}', 'payment_time')">4. Payment</button>
+            </div>
+
+            <button class="paid-btn" onclick="setOrderStatus('${o.key}', 'paid')">✓ Counter Payment Received (Close Order)</button>
+          </div>
+        `;
+      }).join('');
+    }
+
+    async function setOrderStatus(key, status) {
+      await fetch(`${firebaseUrl}/orders/${key}.json`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ status })
+      });
+      showToast('Order updated to: ' + status.replace('_', ' ').toUpperCase());
+      pollDashboard();
+    }
+
+    /* MENU EDITOR & GITHUB SYNC FUNCTIONS */
+    function saveGitHubCreds() {
+      const repo = document.getElementById('gh-repo').value.trim();
+      const token = document.getElementById('gh-token').value.trim();
+      localStorage.setItem('aurelia_gh_repo', repo);
+      localStorage.setItem('aurelia_gh_token', token);
+      showToast('GitHub credentials saved in browser!');
+      loadMenuData();
+    }
+
+    function renderAdminMenuList() {
+      if (!menuData) return;
+      const list = document.getElementById('admin-menu-list');
+      document.getElementById('menu-count').textContent = menuData.items.length;
+
+      list.innerHTML = menuData.items.map(item => `
+        <div class="menu-admin-row">
+          <div style="flex:1;">
+            <div style="font-weight:700; font-size:0.92rem;">
+              <span style="color:${item.isVeg ? '#4ade80' : '#f87171'};">●</span> ${item.name}
+              ${item.available === false ? '<span style="color:#f87171; font-size:0.72rem;">(SOLD OUT)</span>' : ''}
+            </div>
+            <div style="font-size:0.76rem; color:var(--text-secondary);">${item.category} • ₹${item.price}</div>
+          </div>
+          <div style="display:flex; gap:6px;">
+            <button class="btn-outline" style="padding:6px 10px; font-size:0.75rem;" onclick="editMenuItem('${item.id}')">Edit</button>
+            <button class="dismiss-btn" style="padding:6px 10px; font-size:0.75rem;" onclick="deleteMenuItem('${item.id}')">Del</button>
+          </div>
+        </div>
+      `).join('');
+    }
+
+    function editMenuItem(id) {
+      const item = menuData.items.find(i => i.id === id);
+      if (!item) return;
+      document.getElementById('form-heading').textContent = 'Editing: ' + item.name;
+      document.getElementById('edit-item-id').value = item.id;
+      document.getElementById('item-name').value = item.name;
+      document.getElementById('item-category').value = item.category;
+      document.getElementById('item-price').value = item.price;
+      document.getElementById('item-veg').value = String(item.isVeg);
+      document.getElementById('item-avail').value = String(item.available !== false);
+      document.getElementById('item-desc').value = item.description;
+      document.getElementById('item-image-url').value = item.image || '';
+      window.scrollTo({ top: 300, behavior: 'smooth' });
+    }
+
+    function resetItemForm() {
+      document.getElementById('form-heading').textContent = '3. Add New Menu Item';
+      document.getElementById('edit-item-id').value = '';
+      document.getElementById('item-name').value = '';
+      document.getElementById('item-price').value = '';
+      document.getElementById('item-desc').value = '';
+      document.getElementById('item-image-url').value = '';
+      document.getElementById('item-photo-file').value = '';
+    }
+
+    async function uploadImageToGitHub(file) {
+      const repo = document.getElementById('gh-repo').value.trim();
+      const token = document.getElementById('gh-token').value.trim();
+      if (!repo || !token) throw new Error('Enter GitHub Repo & Token first');
+
+      return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.onload = async () => {
+          try {
+            const base64 = reader.result.split(',')[1];
+            const path = `images/dish_${Date.now()}_${file.name.replace(/[^a-zA-Z0-9.]/g, '')}`;
+            const res = await fetch(`https://api.github.com/repos/${repo}/contents/${path}`, {
+              method: 'PUT',
+              headers: {
+                'Authorization': `Bearer ${token}`,
+                'Content-Type': 'application/json'
+              },
+              body: JSON.stringify({
+                message: `Upload dish image ${path}`,
+                content: base64
+              })
+            });
+            if (!res.ok) throw new Error('Image upload failed');
+            resolve(path);
+          } catch (err) { reject(err); }
+        };
+        reader.readAsDataURL(file);
+      });
+    }
+
+    async function saveMenuItem() {
+      const name = document.getElementById('item-name').value.trim();
+      const price = Number(document.getElementById('item-price').value);
+      if (!name || !price) {
+        showToast('Enter dish name and price');
+        return;
+      }
+
+      let imageUrl = document.getElementById('item-image-url').value;
+      const fileInput = document.getElementById('item-photo-file');
+      if (fileInput.files && fileInput.files[0]) {
+        try {
+          showToast('Uploading photo to GitHub...');
+          imageUrl = await uploadImageToGitHub(fileInput.files[0]);
+        } catch (e) {
+          showToast(e.message);
+          return;
+        }
+      }
+
+      const editId = document.getElementById('edit-item-id').value;
+      const itemObj = {
+        id: editId || 'item_' + Date.now(),
+        name,
+        category: document.getElementById('item-category').value,
+        price,
+        isVeg: document.getElementById('item-veg').value === 'true',
+        available: document.getElementById('item-avail').value === 'true',
+        description: document.getElementById('item-desc').value.trim(),
+        image: imageUrl
+      };
+
+      if (editId) {
+        const idx = menuData.items.findIndex(i => i.id === editId);
+        if (idx !== -1) menuData.items[idx] = itemObj;
+      } else {
+        menuData.items.unshift(itemObj);
+      }
+
+      resetItemForm();
+      renderAdminMenuList();
+      showToast('Saved locally! Tap "Publish Changes" to go live.');
+    }
+
+    function deleteMenuItem(id) {
+      menuData.items = menuData.items.filter(i => i.id !== id);
+      renderAdminMenuList();
+      showToast('Item removed. Tap "Publish Changes" to update live site.');
+    }
+
+    async function publishMenuToGitHub() {
+      const repo = document.getElementById('gh-repo').value.trim();
+      const token = document.getElementById('gh-token').value.trim();
+      if (!repo || !token) {
+        showToast('Please save your GitHub Token in Section 1 first!');
+        return;
+      }
+
+      const btn = document.getElementById('publish-btn');
+      btn.disabled = true;
+      btn.textContent = 'Publishing...';
+
+      menuData.cafeName = document.getElementById('cfg-name').value.trim();
+      menuData.tableCount = Number(document.getElementById('cfg-tables').value) || 12;
+      menuData.gstPercent = Number(document.getElementById('cfg-gst').value) || 0;
+      menuData.serviceChargePercent = Number(document.getElementById('cfg-sc').value) || 0;
+      menuData.welcomeMessage = document.getElementById('cfg-welcome').value.trim();
+
+      try {
+        const getRes = await fetch(`https://api.github.com/repos/${repo}/contents/menu-data.json`, {
+          headers: { 'Authorization': `Bearer ${token}` }
+        });
+        const fileInfo = await getRes.json();
+
+        const jsonStr = JSON.stringify(menuData, null, 2);
+        const encoded = btoa(unescape(encodeURIComponent(jsonStr)));
+
+        const putRes = await fetch(`https://api.github.com/repos/${repo}/contents/menu-data.json`, {
+          method: 'PUT',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            message: 'Update menu-data.json via Manager Portal',
+            content: encoded,
+            sha: fileInfo.sha
+          })
+        });
+
+        if (!putRes.ok) throw new Error('GitHub rejected update. Check token permissions.');
+        showToast('🚀 Published! Live site updates in ~30 seconds.');
+        renderTableQRs();
+      } catch (e) {
+        showToast(e.message);
+      } finally {
+        btn.disabled = false;
+        btn.textContent = '🚀 Publish Changes to Live Site';
+      }
+    }
+
+    function renderTableQRs() {
+      const count = Number(document.getElementById('cfg-tables').value) || 12;
+      const baseUrl = window.location.href.replace(/admin\.html.*$/, 'index.html');
+      const grid = document.getElementById('qr-grid');
+      let html = '';
+      for (let i = 1; i <= count; i++) {
+        const target = encodeURIComponent(`${baseUrl}?table=${i}`);
+        html += `
+          <div class="qr-card">
+            <div style="font-weight:800; font-size:0.85rem;">AURELIA ROAST</div>
+            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=${target}" alt="Table ${i} QR" />
+            <div style="font-weight:700; font-size:0.9rem;">TABLE ${i}</div>
+          </div>
+        `;
+      }
+      grid.innerHTML = html;
+    }
+
+    initAdmin();
+  </script>
+</body>
+</html>
