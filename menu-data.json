@@ -6,20 +6,36 @@
   "managerPin": "2026",
   "currency": "₹",
   "tableCount": 12,
-  "gstPercent": 5,
-  "serviceChargePercent": 5,
-  "waiterCooldownMinutes": 5,
+  "gstPercent": 0,
+  "serviceChargePercent": 0,
+  "waiterCooldownMinutes": 2,
   "happyHour": {
     "enabled": true,
     "label": "Royal Evening Happy Hour (4 PM – 7 PM)",
     "startHour": 16,
     "endHour": 19,
     "discountPercent": 15,
-    "categories": ["Beverages & Drinks", "Starters & Snacks", "Fast Food"]
+    "categories": [
+      "Beverages & Drinks",
+      "Starters & Snacks",
+      "Fast Food"
+    ]
   },
   "coupons": [
-    { "code": "AURELIA10", "type": "percent", "value": 10, "minOrder": 300, "desc": "10% OFF on orders ₹300+" },
-    { "code": "ROYAL50", "type": "flat", "value": 50, "minOrder": 250, "desc": "Flat ₹50 OFF on orders ₹250+" }
+    {
+      "code": "AURELIA10",
+      "type": "percent",
+      "value": 10,
+      "minOrder": 300,
+      "desc": "10% OFF on orders ₹300+"
+    },
+    {
+      "code": "ROYAL50",
+      "type": "flat",
+      "value": 50,
+      "minOrder": 250,
+      "desc": "Flat ₹50 OFF on orders ₹250+"
+    }
   ],
   "heroBanners": {
     "All": {
@@ -59,16 +75,56 @@
     }
   },
   "categories": [
-    { "name": "Beverages & Drinks", "icon": "☕", "subtitle": "Refreshing traditional coolers & spiced brews." },
-    { "name": "Breakfast", "icon": "🍳", "subtitle": "Hearty morning classics served fresh." },
-    { "name": "Starters & Snacks", "icon": "🔥", "subtitle": "Crisp street favorites & charcoal tandoor bites." },
-    { "name": "Veg Main Course", "icon": "🥘", "subtitle": "Rich vegetarian gravies & slow-simmered dals." },
-    { "name": "Non-Veg Main Course", "icon": "🍗", "subtitle": "Authentic Mughlai & homestyle meat curries." },
-    { "name": "Rice & Biryani", "icon": "🍚", "subtitle": "Aromatic basmati rice & sealed dum biryanis." },
-    { "name": "Roti & Indian Breads", "icon": "🫓", "subtitle": "Clay-oven naans, rotis & flaky parathas." },
-    { "name": "Combos & Thalis", "icon": "🍱", "subtitle": "Complete wholesome Indian meals on one platter." },
-    { "name": "Desserts", "icon": "🍮", "subtitle": "Warm traditional sweets & chilled indulgences." },
-    { "name": "Fast Food", "icon": "🍔", "subtitle": "Indo-western café favorites & quick bites." }
+    {
+      "name": "Beverages & Drinks",
+      "icon": "☕",
+      "subtitle": "Refreshing traditional coolers & spiced brews."
+    },
+    {
+      "name": "Breakfast",
+      "icon": "🍳",
+      "subtitle": "Hearty morning classics served fresh."
+    },
+    {
+      "name": "Starters & Snacks",
+      "icon": "🔥",
+      "subtitle": "Crisp street favorites & charcoal tandoor bites."
+    },
+    {
+      "name": "Veg Main Course",
+      "icon": "🥘",
+      "subtitle": "Rich vegetarian gravies & slow-simmered dals."
+    },
+    {
+      "name": "Non-Veg Main Course",
+      "icon": "🍗",
+      "subtitle": "Authentic Mughlai & homestyle meat curries."
+    },
+    {
+      "name": "Rice & Biryani",
+      "icon": "🍚",
+      "subtitle": "Aromatic basmati rice & sealed dum biryanis."
+    },
+    {
+      "name": "Roti & Indian Breads",
+      "icon": "🫓",
+      "subtitle": "Clay-oven naans, rotis & flaky parathas."
+    },
+    {
+      "name": "Combos & Thalis",
+      "icon": "🍱",
+      "subtitle": "Complete wholesome Indian meals on one platter."
+    },
+    {
+      "name": "Desserts",
+      "icon": "🍮",
+      "subtitle": "Warm traditional sweets & chilled indulgences."
+    },
+    {
+      "name": "Fast Food",
+      "icon": "🍔",
+      "subtitle": "Indo-western café favorites & quick bites."
+    }
   ],
   "items": [
     {
@@ -85,8 +141,14 @@
       "prepTime": "8 mins",
       "allergens": "Dairy",
       "addOns": [
-        { "name": "Extra Ginger & Cardamom", "price": 15 },
-        { "name": "Maska Bun Side", "price": 45 }
+        {
+          "name": "Extra Ginger & Cardamom",
+          "price": 15
+        },
+        {
+          "name": "Maska Bun Side",
+          "price": 45
+        }
       ],
       "description": "Assam black tea brewed with crushed green cardamom, ginger, clove, and creamy milk.",
       "image": "https://images.unsplash.com/photo-1561336313-0bd5e0b27ec8?auto=format&fit=crop&w=400&q=80"
@@ -105,7 +167,10 @@
       "prepTime": "5 mins",
       "allergens": "Dairy, Nuts",
       "addOns": [
-        { "name": "Extra Malai & Pistachio", "price": 30 }
+        {
+          "name": "Extra Malai & Pistachio",
+          "price": 30
+        }
       ],
       "description": "Thick churned yogurt smoothie topped with malai, saffron strands, and crushed pistachios.",
       "image": "https://images.unsplash.com/photo-1556881286-fc6915169721?auto=format&fit=crop&w=400&q=80"
@@ -124,8 +189,14 @@
       "prepTime": "5 mins",
       "allergens": "None",
       "addOns": [
-        { "name": "Sweet & Salted Mix", "price": 0 },
-        { "name": "Fresh Mint Crush", "price": 15 }
+        {
+          "name": "Sweet & Salted Mix",
+          "price": 0
+        },
+        {
+          "name": "Fresh Mint Crush",
+          "price": 15
+        }
       ],
       "description": "Chilled sparkling soda muddled with fresh lime juice, roasted cumin, and black salt.",
       "image": "https://images.unsplash.com/photo-1513558161293-cdaf765ed2fd?auto=format&fit=crop&w=400&q=80"
@@ -144,8 +215,14 @@
       "prepTime": "15 mins",
       "allergens": "Gluten",
       "addOns": [
-        { "name": "Extra Bhatura (1 Pc)", "price": 50 },
-        { "name": "Boondi Raita Bowl", "price": 40 }
+        {
+          "name": "Extra Bhatura (1 Pc)",
+          "price": 50
+        },
+        {
+          "name": "Boondi Raita Bowl",
+          "price": 40
+        }
       ],
       "description": "Fluffy golden fried bhature served with spiced Pindi chickpeas, pickled onions, and mint chutney.",
       "image": "https://images.unsplash.com/photo-1626132647523-66f5bf380027?auto=format&fit=crop&w=400&q=80"
@@ -164,8 +241,14 @@
       "prepTime": "12 mins",
       "allergens": "Gluten, Dairy",
       "addOns": [
-        { "name": "Extra White Makkhan", "price": 25 },
-        { "name": "Masala Curd", "price": 30 }
+        {
+          "name": "Extra White Makkhan",
+          "price": 25
+        },
+        {
+          "name": "Masala Curd",
+          "price": 30
+        }
       ],
       "description": "Whole-wheat flatbread stuffed with spiced mashed potatoes, served with white butter and curd.",
       "image": "https://images.unsplash.com/photo-1668236543090-82eba5ee5976?auto=format&fit=crop&w=400&q=80"
@@ -184,8 +267,14 @@
       "prepTime": "18 mins",
       "allergens": "Dairy",
       "addOns": [
-        { "name": "Extra Mint Chutney & Onion", "price": 20 },
-        { "name": "Cheese Drizzle", "price": 40 }
+        {
+          "name": "Extra Mint Chutney & Onion",
+          "price": 20
+        },
+        {
+          "name": "Cheese Drizzle",
+          "price": 40
+        }
       ],
       "description": "Cottage cheese cubes marinated in hung curd and Kashmiri chili, charred in a clay tandoor.",
       "image": "https://images.unsplash.com/photo-1567188040759-fb8a883dc6d8?auto=format&fit=crop&w=400&q=80"
@@ -204,8 +293,14 @@
       "prepTime": "20 mins",
       "allergens": "Dairy",
       "addOns": [
-        { "name": "Creamy Garlic Dip", "price": 35 },
-        { "name": "Extra Seekh Piece", "price": 90 }
+        {
+          "name": "Creamy Garlic Dip",
+          "price": 35
+        },
+        {
+          "name": "Extra Seekh Piece",
+          "price": 90
+        }
       ],
       "description": "Succulent boneless chicken morsels marinated in cream cheese, cardamom, and white pepper.",
       "image": "https://images.unsplash.com/photo-1599487488170-d11ec9c172f0?auto=format&fit=crop&w=400&q=80"
@@ -224,8 +319,14 @@
       "prepTime": "18 mins",
       "allergens": "Dairy, Nuts",
       "addOns": [
-        { "name": "Extra Paneer Cubes", "price": 60 },
-        { "name": "1 Garlic Naan Combo", "price": 80 }
+        {
+          "name": "Extra Paneer Cubes",
+          "price": 60
+        },
+        {
+          "name": "1 Garlic Naan Combo",
+          "price": 80
+        }
       ],
       "description": "Soft cottage cheese simmered in a velvety tomato, cashew, and kasuri methi butter gravy.",
       "image": "https://images.unsplash.com/photo-1631452180519-c014fe946bc7?auto=format&fit=crop&w=400&q=80"
@@ -244,8 +345,14 @@
       "prepTime": "15 mins",
       "allergens": "Dairy",
       "addOns": [
-        { "name": "Extra Cream & Butter", "price": 30 },
-        { "name": "2 Tandoori Rotis", "price": 75 }
+        {
+          "name": "Extra Cream & Butter",
+          "price": 30
+        },
+        {
+          "name": "2 Tandoori Rotis",
+          "price": 75
+        }
       ],
       "description": "Whole black lentils slow-cooked overnight over embers, finished with white butter and cream.",
       "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=400&q=80"
@@ -264,8 +371,14 @@
       "prepTime": "20 mins",
       "allergens": "Dairy, Nuts",
       "addOns": [
-        { "name": "Boneless Upgrade", "price": 40 },
-        { "name": "1 Garlic Naan Combo", "price": 80 }
+        {
+          "name": "Boneless Upgrade",
+          "price": 40
+        },
+        {
+          "name": "1 Garlic Naan Combo",
+          "price": 80
+        }
       ],
       "description": "Char-grilled tandoori chicken tikka folded into a rich, smoky tomato and fenugreek cream sauce.",
       "image": "https://images.unsplash.com/photo-1603894584373-5ac82b2ae398?auto=format&fit=crop&w=400&q=80"
@@ -284,7 +397,10 @@
       "prepTime": "25 mins",
       "allergens": "Dairy",
       "addOns": [
-        { "name": "Extra Gravy Portion", "price": 70 }
+        {
+          "name": "Extra Gravy Portion",
+          "price": 70
+        }
       ],
       "description": "Tender bone-in mutton slow-braised with Mathania red chilies, yogurt, and smoked cloves.",
       "image": "https://images.unsplash.com/photo-1545247181-516773cae754?auto=format&fit=crop&w=400&q=80"
@@ -303,8 +419,14 @@
       "prepTime": "20 mins",
       "allergens": "Dairy",
       "addOns": [
-        { "name": "Extra Burani Raita & Salan", "price": 40 },
-        { "name": "Boiled Masala Egg", "price": 30 }
+        {
+          "name": "Extra Burani Raita & Salan",
+          "price": 40
+        },
+        {
+          "name": "Boiled Masala Egg",
+          "price": 30
+        }
       ],
       "description": "Aged long-grain basmati rice layered with spiced chicken, caramelized onions, mint, and burani raita.",
       "image": "https://images.unsplash.com/photo-1563379091339-03b21ab4a4f8?auto=format&fit=crop&w=400&q=80"
@@ -323,7 +445,10 @@
       "prepTime": "18 mins",
       "allergens": "Dairy, Nuts",
       "addOns": [
-        { "name": "Roasted Paneer Cubes", "price": 55 }
+        {
+          "name": "Roasted Paneer Cubes",
+          "price": 55
+        }
       ],
       "description": "Garden vegetables and paneer slow-cooked with saffron basmati rice, served with mirchi salan and raita.",
       "image": "https://images.unsplash.com/photo-1642821373181-696a54913e93?auto=format&fit=crop&w=400&q=80"
@@ -342,7 +467,10 @@
       "prepTime": "8 mins",
       "allergens": "Gluten, Dairy",
       "addOns": [
-        { "name": "Cheese Stuffed Upgrade", "price": 45 }
+        {
+          "name": "Cheese Stuffed Upgrade",
+          "price": 45
+        }
       ],
       "description": "Tandoor-baked leavened flatbread brushed with roasted garlic butter and fresh herbs.",
       "image": "https://images.unsplash.com/photo-1626074353765-517a681e40be?auto=format&fit=crop&w=400&q=80"
@@ -361,7 +489,10 @@
       "prepTime": "18 mins",
       "allergens": "Gluten, Dairy, Nuts",
       "addOns": [
-        { "name": "Sweet Lassi Glass", "price": 90 }
+        {
+          "name": "Sweet Lassi Glass",
+          "price": 90
+        }
       ],
       "description": "Paneer Butter Masala, Dal Makhani, Mix Veg, Jeera Rice, 2 Butter Naan, Raita, Papad & Gulab Jamun.",
       "image": "https://images.unsplash.com/photo-1546833999-b9f581a1996d?auto=format&fit=crop&w=400&q=80"
@@ -380,7 +511,10 @@
       "prepTime": "6 mins",
       "allergens": "Dairy, Gluten, Nuts",
       "addOns": [
-        { "name": "Vanilla Bean Ice Cream Scoop", "price": 50 }
+        {
+          "name": "Vanilla Bean Ice Cream Scoop",
+          "price": 50
+        }
       ],
       "description": "Warm cardamom-scented khoya dumplings served over chilled saffron-pistachio rabri.",
       "image": "https://images.unsplash.com/photo-1666190092159-3171cf0fbb12?auto=format&fit=crop&w=400&q=80"
@@ -399,11 +533,17 @@
       "prepTime": "14 mins",
       "allergens": "Gluten, Dairy",
       "addOns": [
-        { "name": "Peri-Peri Fries Side", "price": 75 },
-        { "name": "Extra Cheddar Slice", "price": 30 }
+        {
+          "name": "Peri-Peri Fries Side",
+          "price": 75
+        },
+        {
+          "name": "Extra Cheddar Slice",
+          "price": 30
+        }
       ],
       "description": "Char-grilled spiced paneer patty, mint mayo, pickled onions, and cheddar in a toasted brioche bun.",
       "image": "https://images.unsplash.com/photo-1568901346375-23c9450c58cd?auto=format&fit=crop&w=400&q=80"
     }
   ]
-    }
+}
