@@ -24,8 +24,6 @@
       --text-primary: #faf6f0;
       --text-secondary: #b9aea3;
       --text-muted: #7c7167;
-      --veg: #22c55e;
-      --nonveg: #ef4444;
     }
 
     * { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
@@ -52,7 +50,7 @@
       box-shadow: var(--glass-highlight), 0 14px 36px rgba(0, 0, 0, 0.48);
     }
 
-    /* MANAGER PASSWORD LOGIN GATE */
+    /* LOGIN GATE */
     #login-gate {
       min-height: 100vh;
       display: flex;
@@ -64,13 +62,7 @@
       max-width: 420px;
       margin: 0 auto;
     }
-
-    .login-card {
-      width: 100%;
-      border-radius: 28px;
-      padding: 30px 22px;
-    }
-
+    .login-card { width: 100%; border-radius: 28px; padding: 30px 22px; }
     .pin-input {
       width: 100%;
       padding: 15px;
@@ -94,21 +86,19 @@
       background: var(--gold-grad);
       color: #0b0908;
       font-weight: 700;
-      font-size: 0.94rem;
+      font-size: 0.92rem;
       cursor: pointer;
       box-shadow: inset 0 1px 1px rgba(255,255,255,0.6), 0 8px 24px rgba(212, 175, 55, 0.28);
     }
     .btn-gold-pill:active { transform: scale(0.98); }
-    .btn-gold-pill:disabled { opacity: 0.55; cursor: not-allowed; }
 
-    /* TOPBAR */
+    /* TOPBAR & NAV */
     .topbar {
       position: sticky;
       top: 0;
       z-index: 40;
-      background: rgba(11, 9, 8, 0.82);
+      background: rgba(11, 9, 8, 0.84);
       backdrop-filter: blur(24px) saturate(185%);
-      -webkit-backdrop-filter: blur(24px) saturate(185%);
       border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       padding: 12px 16px;
       display: flex;
@@ -117,16 +107,9 @@
       flex-wrap: wrap;
       gap: 10px;
     }
-
-    .brand-area h1 { font-size: 1.28rem; letter-spacing: 2.2px; color: var(--gold-light); }
-    .brand-area span { font-size: 0.64rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1.3px; }
-
-    .top-actions {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-    }
+    .brand-area h1 { font-size: 1.25rem; letter-spacing: 2.2px; color: var(--gold-light); }
+    .brand-area span { font-size: 0.62rem; color: var(--text-secondary); text-transform: uppercase; letter-spacing: 1.3px; }
+    .top-actions { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 
     .glass-pill-btn {
       padding: 7px 12px;
@@ -134,22 +117,18 @@
       border: 1px solid var(--glass-gold-border);
       background: rgba(212, 175, 55, 0.12);
       color: var(--gold-light);
-      font-size: 0.74rem;
+      font-size: 0.73rem;
       font-weight: 700;
       cursor: pointer;
     }
-    .glass-pill-btn.enabled {
-      border-color: rgba(34, 197, 94, 0.5);
-      background: rgba(34, 197, 94, 0.16);
-      color: #4ade80;
-    }
+    .glass-pill-btn.enabled { border-color: rgba(34, 197, 94, 0.5); background: rgba(34, 197, 94, 0.16); color: #4ade80; }
 
     .nav-strip {
       display: flex;
       gap: 6px;
       overflow-x: auto;
       padding: 12px 16px 4px;
-      max-width: 860px;
+      max-width: 900px;
       margin: 0 auto;
       scrollbar-width: none;
     }
@@ -157,13 +136,13 @@
 
     .nav-tab-btn {
       white-space: nowrap;
-      padding: 9px 16px;
+      padding: 9px 15px;
       border-radius: 999px;
       border: 1px solid var(--glass-border);
       background: var(--glass-surface);
       color: var(--text-secondary);
       font-weight: 700;
-      font-size: 0.78rem;
+      font-size: 0.76rem;
       cursor: pointer;
     }
     .nav-tab-btn.active {
@@ -173,7 +152,7 @@
       box-shadow: inset 0 1px 1px rgba(255,255,255,0.6);
     }
 
-    .container { max-width: 860px; margin: 0 auto; padding: 14px 16px; }
+    .container { max-width: 900px; margin: 0 auto; padding: 14px 16px; }
     .section-view { display: none; }
     .section-view.active { display: block; }
 
@@ -191,12 +170,10 @@
       gap: 10px;
       animation: pulseBorder 1.5s infinite;
     }
-
     @keyframes pulseBorder {
       0%, 100% { box-shadow: 0 0 0 rgba(239, 68, 68, 0); }
       50% { box-shadow: 0 0 22px rgba(239, 68, 68, 0.45); }
     }
-
     .dismiss-btn {
       background: #ef4444;
       color: #fff;
@@ -204,41 +181,20 @@
       padding: 8px 13px;
       border-radius: 999px;
       font-weight: 700;
-      font-size: 0.76rem;
+      font-size: 0.74rem;
       cursor: pointer;
       white-space: nowrap;
     }
 
-    /* STATS GRID */
-    .stats-grid {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-    @media (max-width: 520px) {
-      .stats-grid { grid-template-columns: repeat(2, 1fr); }
-    }
-
-    .stat-card {
-      border-radius: 18px;
-      padding: 12px 10px;
-      text-align: center;
-    }
-    .stat-val { font-size: 1.25rem; font-weight: 700; color: var(--gold-light); }
+    /* STATS & CARDS */
+    .stats-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; margin-bottom: 16px; }
+    @media (max-width: 540px) { .stats-grid { grid-template-columns: repeat(2, 1fr); } }
+    .stat-card { border-radius: 18px; padding: 12px 10px; text-align: center; }
+    .stat-val { font-size: 1.22rem; font-weight: 700; color: var(--gold-light); }
     .stat-lbl { font-size: 0.68rem; color: var(--text-secondary); margin-top: 2px; }
 
-    /* ORDER CARDS */
-    .order-card {
-      border-radius: 22px;
-      padding: 16px;
-      margin-bottom: 14px;
-    }
-    .order-card.priority {
-      border-color: #f59e0b;
-      box-shadow: inset 0 1px 1px rgba(255,255,255,0.25), 0 0 24px rgba(245, 158, 11, 0.22);
-    }
-
+    .order-card { border-radius: 22px; padding: 16px; margin-bottom: 14px; }
+    .order-card.priority { border-color: #f59e0b; box-shadow: inset 0 1px 1px rgba(255,255,255,0.25), 0 0 24px rgba(245, 158, 11, 0.22); }
     .order-head {
       display: flex;
       justify-content: space-between;
@@ -249,46 +205,10 @@
       padding-bottom: 10px;
       border-bottom: 1px solid rgba(255,255,255,0.08);
     }
+    .table-pill { background: var(--gold-grad); color: #0b0908; font-weight: 800; padding: 5px 12px; border-radius: 999px; font-size: 0.8rem; }
+    .pay-tag { font-size: 0.68rem; font-weight: 700; padding: 4px 10px; border-radius: 999px; background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.14); color: var(--gold-light); }
 
-    .table-pill {
-      background: var(--gold-grad);
-      color: #0b0908;
-      font-weight: 800;
-      padding: 5px 12px;
-      border-radius: 999px;
-      font-size: 0.82rem;
-    }
-
-    .pay-tag {
-      font-size: 0.7rem;
-      font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 999px;
-      background: rgba(255, 255, 255, 0.08);
-      border: 1px solid rgba(255, 255, 255, 0.14);
-      color: var(--gold-light);
-    }
-
-    .order-items { margin-bottom: 12px; font-size: 0.86rem; }
-    .order-item-row { display: flex; justify-content: space-between; padding: 4px 0; }
-
-    .note-banner {
-      background: rgba(245, 158, 11, 0.14);
-      border-left: 3px solid #f59e0b;
-      padding: 8px 10px;
-      font-size: 0.78rem;
-      color: #fcd34d;
-      border-radius: 8px;
-      margin-bottom: 12px;
-    }
-
-    .stage-buttons {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-
+    .stage-buttons { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; margin-bottom: 8px; }
     .stage-btn {
       padding: 9px 4px;
       border-radius: 12px;
@@ -304,13 +224,7 @@
     .stage-btn.active-done { background: #059669; color: #fff; border-color: #34d399; }
     .stage-btn.active-payment_time { background: var(--gold); color: #0b0908; border-color: var(--gold-light); }
 
-    .order-footer-actions {
-      display: grid;
-      grid-template-columns: 1fr auto auto;
-      gap: 6px;
-      margin-top: 6px;
-    }
-
+    .order-footer-actions { display: grid; grid-template-columns: 1fr auto auto; gap: 6px; margin-top: 6px; }
     .paid-btn {
       padding: 10px 12px;
       border-radius: 12px;
@@ -322,40 +236,25 @@
       cursor: pointer;
     }
 
-    /* TABLE MANAGEMENT GRID */
-    .tables-board {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
-      gap: 10px;
-      margin-bottom: 18px;
-    }
-
-    .t-tile {
-      border-radius: 18px;
-      padding: 14px 12px;
-      text-align: center;
-    }
-    .t-status-pill {
-      display: inline-block;
-      font-size: 0.66rem;
-      font-weight: 700;
-      padding: 3px 9px;
-      border-radius: 999px;
-      margin: 6px 0;
-      text-transform: uppercase;
-    }
+    /* FLOOR PLAN & TABLES */
+    .floor-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 10px; margin-bottom: 16px; }
+    @media (max-width: 520px) { .floor-grid { grid-template-columns: repeat(3, 1fr); } }
+    .t-tile { border-radius: 20px; padding: 14px 10px; text-align: center; border: 1px solid var(--glass-border); }
+    .t-tile.busy { border-color: rgba(245, 158, 11, 0.5); background: rgba(245, 158, 11, 0.08); }
+    .t-tile.pay { border-color: var(--gold); background: rgba(212, 175, 55, 0.12); }
+    .t-status-pill { display: inline-block; font-size: 0.64rem; font-weight: 700; padding: 3px 8px; border-radius: 999px; margin: 6px 0; text-transform: uppercase; }
     .ts-avail { background: rgba(34, 197, 94, 0.18); color: #4ade80; }
     .ts-busy { background: rgba(245, 158, 11, 0.22); color: #fbbf24; }
     .ts-pay { background: rgba(212, 175, 55, 0.25); color: var(--gold-light); }
     .ts-off { background: rgba(239, 68, 68, 0.2); color: #f87171; }
 
-    /* FORM & EDITOR */
-    .card-box {
-      border-radius: 22px;
-      padding: 16px;
-      margin-bottom: 16px;
-    }
-    .card-title { font-size: 1.3rem; color: var(--gold-light); margin-bottom: 12px; }
+    /* ANALYTICS BARS & FORMS */
+    .card-box { border-radius: 22px; padding: 16px; margin-bottom: 16px; }
+    .card-title { font-size: 1.32rem; color: var(--gold-light); margin-bottom: 12px; }
+    .bar-row { margin-bottom: 10px; }
+    .bar-track { height: 8px; border-radius: 99px; background: rgba(255,255,255,0.08); overflow: hidden; margin-top: 4px; }
+    .bar-fill { height: 100%; background: var(--gold-grad); border-radius: 99px; }
+
     .form-grid { display: grid; grid-template-columns: 1fr; gap: 10px; }
     label.field-lbl { font-size: 0.7rem; color: var(--gold-light); text-transform: uppercase; letter-spacing: 0.9px; display: block; margin-bottom: 4px; font-weight: 700; }
     input, select, textarea {
@@ -365,19 +264,11 @@
       border: 1px solid rgba(255,255,255,0.12);
       background: rgba(12, 10, 9, 0.68);
       color: var(--text-primary);
-      font-size: 0.86rem;
+      font-size: 0.85rem;
       font-family: inherit;
     }
 
-    .menu-admin-row {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 11px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-      gap: 10px;
-    }
-
+    .menu-admin-row { display: flex; justify-content: space-between; align-items: center; padding: 11px 0; border-bottom: 1px solid rgba(255,255,255,0.07); gap: 10px; }
     .qr-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(135px, 1fr)); gap: 10px; margin-top: 12px; }
     .qr-card { background: #fff; color: #0b0908; border-radius: 14px; padding: 10px; text-align: center; }
     .qr-card img { width: 105px; height: 105px; margin: 6px auto; display: block; }
@@ -400,8 +291,8 @@
       white-space: nowrap;
     }
   </style>
-</head>
-<body>
+  </head>
+  <body>
   <div id="toast" class="toast"></div>
 
   <!-- MANAGER PASSWORD LOGIN GATE -->
@@ -410,8 +301,7 @@
       <path d="M32 8L12 54H20.5L25 43H39L43.5 54H52L32 8ZM27.8 36L32 25.5L36.2 36H27.8Z" fill="url(#goldGradAdminLogin)"/>
       <defs>
         <linearGradient id="goldGradAdminLogin" x1="12" y1="8" x2="52" y2="54" gradientUnits="userSpaceOnUse">
-          <stop stop-color="#F3D88B"/>
-          <stop offset="1" stop-color="#D4AF37"/>
+          <stop stop-color="#F3D88B"/><stop offset="1" stop-color="#D4AF37"/>
         </linearGradient>
       </defs>
     </svg>
@@ -422,7 +312,7 @@
       <div style="font-size:1.5rem; margin-bottom:6px;">🔐</div>
       <h2 class="serif" style="font-size:1.5rem; color:var(--text-primary); margin-bottom:6px;">Authorized Access Only</h2>
       <p style="font-size:0.8rem; color:var(--text-secondary); line-height:1.45;">
-        Enter your Manager PIN / Password to unlock live kitchen orders, table controls, and menu settings.
+        Enter your Manager PIN / Password to unlock live kitchen orders, floor plan, analytics, and inventory.
       </p>
 
       <input type="password" id="manager-pin-input" class="pin-input" placeholder="••••" onkeydown="if(event.key==='Enter') verifyManagerLogin()" />
@@ -441,19 +331,20 @@
       </div>
       <div class="top-actions">
         <button class="glass-pill-btn" id="notif-btn" onclick="enableDeviceNotifications()">🔔 Enable Alerts</button>
-        <button class="glass-pill-btn" onclick="lockManagerSession()" title="Lock Screen">🔒 Lock</button>
+        <button class="glass-pill-btn" onclick="lockManagerSession()">🔒 Lock</button>
       </div>
     </header>
 
     <nav class="nav-strip">
-      <button class="nav-tab-btn active" id="tab-btn-dashboard" onclick="switchAdminTab('dashboard')">Live Dashboard</button>
-      <button class="nav-tab-btn" id="tab-btn-tables" onclick="switchAdminTab('tables')">Tables & QR</button>
-      <button class="nav-tab-btn" id="tab-btn-editor" onclick="switchAdminTab('editor')">Menu Editor</button>
-      <button class="nav-tab-btn" id="tab-btn-settings" onclick="switchAdminTab('settings')">Settings & Logs</button>
+      <button class="nav-tab-btn active" id="tab-btn-dashboard" onclick="switchAdminTab('dashboard')">Live Kitchen</button>
+      <button class="nav-tab-btn" id="tab-btn-tables" onclick="switchAdminTab('tables')">Floor Plan & QR</button>
+      <button class="nav-tab-btn" id="tab-btn-analytics" onclick="switchAdminTab('analytics')">Analytics</button>
+      <button class="nav-tab-btn" id="tab-btn-editor" onclick="switchAdminTab('editor')">Menu & Stock</button>
+      <button class="nav-tab-btn" id="tab-btn-settings" onclick="switchAdminTab('settings')">Promos & Settings</button>
     </nav>
 
     <div class="container">
-      <!-- SECTION 1: LIVE DASHBOARD -->
+      <!-- TAB 1: LIVE KITCHEN DASHBOARD -->
       <section id="view-dashboard" class="section-view active">
         <div id="waiter-alerts-container"></div>
 
@@ -486,16 +377,14 @@
         </div>
       </section>
 
-      <!-- SECTION 2: TABLE MANAGEMENT & QR CODES -->
+      <!-- TAB 2: VISUAL FLOOR PLAN & QR CODES -->
       <section id="view-tables" class="section-view">
         <div class="card-box liquid-glass">
-          <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
-            <div>
-              <h3 class="card-title serif" style="margin:0;">Live Floor & Table Status</h3>
-              <p style="font-size:0.76rem; color:var(--text-secondary);">Tap a table to toggle availability or reset session.</p>
-            </div>
-          </div>
-          <div class="tables-board" id="tables-board"></div>
+          <h3 class="card-title serif">Interactive Restaurant Floor Plan</h3>
+          <p style="font-size:0.76rem; color:var(--text-secondary); margin-bottom:12px;">
+            Live occupancy map across all tables. Tap a table tile to enable or disable service.
+          </p>
+          <div class="floor-grid" id="tables-board"></div>
 
           <div style="border-top:1px solid rgba(255,255,255,0.08); padding-top:12px; margin-top:8px;">
             <label class="field-lbl">Transfer Active Orders Between Tables</label>
@@ -512,13 +401,47 @@
             <h3 class="card-title serif" style="margin:0;">Printable Table QR Codes</h3>
             <button class="glass-pill-btn" onclick="window.print()">🖨️ Print QR Sheet</button>
           </div>
-          <p style="font-size:0.76rem; color:var(--text-secondary); margin-top:6px;">
-            Scanning a table QR opens the customer menu with that table pre-selected.
-          </p>
           <div class="qr-grid" id="qr-grid"></div>
         </div>
-              </section>
-                    <!-- SECTION 3: MENU EDITOR -->
+      </section>
+
+      <!-- TAB 3: SALES ANALYTICS & GUEST REVIEWS -->
+      <section id="view-analytics" class="section-view">
+        <div class="stats-grid">
+          <div class="stat-card liquid-glass">
+            <div class="stat-val" id="an-today">₹0</div>
+            <div class="stat-lbl">Today Revenue</div>
+          </div>
+          <div class="stat-card liquid-glass">
+            <div class="stat-val" id="an-week">₹0</div>
+            <div class="stat-lbl">Last 7 Days</div>
+          </div>
+          <div class="stat-card liquid-glass">
+            <div class="stat-val" id="an-month">₹0</div>
+            <div class="stat-lbl">Last 30 Days</div>
+          </div>
+          <div class="stat-card liquid-glass">
+            <div class="stat-val" id="an-aov">₹0</div>
+            <div class="stat-lbl">Avg Order Value</div>
+          </div>
+        </div>
+
+        <div class="card-box liquid-glass">
+          <h3 class="card-title serif">Revenue by Indian Menu Category</h3>
+          <div id="an-category-bars" style="font-size:0.82rem;"></div>
+        </div>
+
+        <div class="card-box liquid-glass">
+          <h3 class="card-title serif">Top-Ordered Dishes</h3>
+          <div id="an-top-dishes" style="font-size:0.82rem;"></div>
+        </div>
+
+        <div class="card-box liquid-glass">
+          <h3 class="card-title serif">Recent Guest Star Ratings</h3>
+          <div id="an-feedback-list" style="font-size:0.82rem;"></div>
+        </div>
+  </section>
+        <!-- TAB 4: MENU & INVENTORY STOCK EDITOR -->
       <section id="view-editor" class="section-view">
         <div class="card-box liquid-glass">
           <h3 class="card-title serif" id="form-heading">Add / Edit Menu Dish</h3>
@@ -538,19 +461,23 @@
                 <input type="number" id="item-price" placeholder="320" />
               </div>
             </div>
-            <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px;">
+            <div style="display:grid; grid-template-columns:1fr 1fr 1fr; gap:8px;">
               <div>
-                <label class="field-lbl">Dietary Section</label>
+                <label class="field-lbl">Dietary</label>
                 <select id="item-veg">
                   <option value="true">Pure Veg</option>
                   <option value="false">Non-Veg</option>
                 </select>
               </div>
               <div>
-                <label class="field-lbl">Stock Status</label>
-                <select id="item-avail">
-                  <option value="true">In Stock</option>
-                  <option value="false">Sold Out</option>
+                <label class="field-lbl">Stock Qty</label>
+                <input type="number" id="item-stock" value="30" />
+              </div>
+              <div>
+                <label class="field-lbl">Chef's Pick</label>
+                <select id="item-rec">
+                  <option value="false">Standard</option>
+                  <option value="true">Recommended</option>
                 </select>
               </div>
             </div>
@@ -562,22 +489,20 @@
                   <option value="Bestseller">Bestseller</option>
                   <option value="Chef's Special">Chef's Special</option>
                   <option value="New">New</option>
-                  <option value="Spicy">Spicy</option>
                 </select>
               </div>
               <div>
-                <label class="field-lbl">Spice Level</label>
-                <select id="item-spice">
-                  <option value="None">None</option>
-                  <option value="Mild">Mild</option>
-                  <option value="Medium">Medium</option>
-                  <option value="Hot">Hot</option>
-                </select>
+                <label class="field-lbl">Allergens</label>
+                <input type="text" id="item-allergens" placeholder="Dairy, Nuts" />
               </div>
               <div>
                 <label class="field-lbl">Prep Time</label>
                 <input type="text" id="item-prep" placeholder="15 mins" />
               </div>
+            </div>
+            <div>
+              <label class="field-lbl">Add-ons (Format: Name:Price, Name:Price)</label>
+              <input type="text" id="item-addons" placeholder="Extra Cheese:40, Garlic Naan:80" />
             </div>
             <div>
               <label class="field-lbl">Description</label>
@@ -589,7 +514,7 @@
               <input type="hidden" id="item-image-url" />
             </div>
             <div style="display:flex; gap:8px;">
-              <button class="btn-gold-pill" onclick="saveMenuItem()">Save Dish to List</button>
+              <button class="btn-gold-pill" onclick="saveMenuItem()">Save Dish to Catalog</button>
               <button class="glass-pill-btn" onclick="resetItemForm()">Clear</button>
             </div>
           </div>
@@ -597,21 +522,18 @@
 
         <div class="card-box liquid-glass">
           <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:8px; margin-bottom:12px;">
-            <h3 class="card-title serif" style="margin:0;">Menu Catalog (<span id="menu-count">0</span> Dishes)</h3>
-            <button class="btn-gold-pill" style="width:auto; padding:10px 18px; font-size:0.82rem;" id="publish-btn" onclick="publishMenuToGitHub()">🚀 Publish Changes Live</button>
+            <h3 class="card-title serif" style="margin:0;">Menu & Stock Catalog (<span id="menu-count">0</span>)</h3>
+            <button class="btn-gold-pill" style="width:auto; padding:10px 18px; font-size:0.8rem;" onclick="publishMenuToGitHub()">🚀 Publish Changes Live</button>
           </div>
-          <input type="text" id="admin-menu-search" placeholder="Search dishes in catalog..." oninput="renderAdminMenuList()" style="margin-bottom:10px;" />
+          <input type="text" id="admin-menu-search" placeholder="Search dishes or check low stock..." oninput="renderAdminMenuList()" style="margin-bottom:10px;" />
           <div id="admin-menu-list"></div>
         </div>
       </section>
 
-      <!-- SECTION 4: SETTINGS & ACTIVITY LOG -->
+      <!-- TAB 5: PROMOS, HAPPY HOUR & SETTINGS -->
       <section id="view-settings" class="section-view">
         <div class="card-box liquid-glass">
           <h3 class="card-title serif">1. GitHub Sync Credentials</h3>
-          <p style="font-size:0.76rem; color:var(--text-secondary); margin-bottom:10px;">
-            Stored locally in this browser to publish menu changes & photos directly to <strong>nnature7777-tech/Aurelia-roast</strong>.
-          </p>
           <div class="form-grid">
             <div>
               <label class="field-lbl">GitHub Repository (owner/repo)</label>
@@ -626,14 +548,42 @@
         </div>
 
         <div class="card-box liquid-glass">
-          <h3 class="card-title serif">2. Restaurant & Security Settings</h3>
+          <h3 class="card-title serif">2. Happy Hour & Promo Rules</h3>
+          <div class="form-grid" style="grid-template-columns:1fr 1fr;">
+            <div>
+              <label class="field-lbl">Happy Hour Status</label>
+              <select id="hh-enabled">
+                <option value="true">Enabled</option>
+                <option value="false">Disabled</option>
+              </select>
+            </div>
+            <div>
+              <label class="field-lbl">Happy Hour Discount %</label>
+              <input type="number" id="hh-percent" value="15" />
+            </div>
+            <div>
+              <label class="field-lbl">Start Hour (0–23)</label>
+              <input type="number" id="hh-start" value="16" />
+            </div>
+            <div>
+              <label class="field-lbl">End Hour (0–23)</label>
+              <input type="number" id="hh-end" value="19" />
+            </div>
+          </div>
+          <p style="font-size:0.74rem; color:var(--text-secondary); margin-top:8px;">
+            Active Guest Coupons: <strong>AURELIA10</strong> (10% off ₹300+) & <strong>ROYAL50</strong> (₹50 off ₹250+).
+          </p>
+        </div>
+
+        <div class="card-box liquid-glass">
+          <h3 class="card-title serif">3. Restaurant & Security Settings</h3>
           <div class="form-grid" style="grid-template-columns:1fr 1fr;">
             <div>
               <label class="field-lbl">Restaurant Name</label>
               <input type="text" id="cfg-name" />
             </div>
             <div>
-              <label class="field-lbl">Manager Login PIN / Password</label>
+              <label class="field-lbl">Manager Login PIN</label>
               <input type="text" id="cfg-pin" placeholder="2026" />
             </div>
             <div>
@@ -657,11 +607,11 @@
             <label class="field-lbl">Welcome Message</label>
             <textarea id="cfg-welcome" rows="2"></textarea>
           </div>
-          <button class="btn-gold-pill" onclick="publishMenuToGitHub()">Save & Publish Settings Live</button>
+          <button class="btn-gold-pill" onclick="publishMenuToGitHub()">Save & Publish All Settings Live</button>
         </div>
 
         <div class="card-box liquid-glass">
-          <h3 class="card-title serif">3. Recent Manager Activity Log</h3>
+          <h3 class="card-title serif">4. Manager Activity Log</h3>
           <div id="activity-log-box" style="font-size:0.78rem; color:var(--text-secondary);"></div>
         </div>
       </section>
@@ -676,6 +626,7 @@
     let knownCallKeys = new Set();
     let isFirstLoad = true;
     let latestOrdersMap = {};
+    let liveStockMap = {};
     let disabledTables = JSON.parse(localStorage.getItem('aurelia_disabled_tables') || '[]');
     let inactivityTimer = null;
 
@@ -701,7 +652,7 @@
         ? '<p>No actions recorded in this session yet.</p>'
         : logs.map(l => `<div style="padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.06);"><strong>${l.time}</strong> — ${l.text}</div>`).join('');
     }
-              /* PASSWORD LOGIN & SESSION TIMEOUT */
+      /* PASSWORD LOGIN & SESSION TIMEOUT */
     function resetInactivityTimer() {
       if (inactivityTimer) clearTimeout(inactivityTimer);
       inactivityTimer = setTimeout(() => {
@@ -805,7 +756,7 @@
     }
 
     function switchAdminTab(tab) {
-      ['dashboard', 'tables', 'editor', 'settings'].forEach(t => {
+      ['dashboard', 'tables', 'analytics', 'editor', 'settings'].forEach(t => {
         document.getElementById('view-' + t).classList.toggle('active', t === tab);
         document.getElementById('tab-btn-' + t).classList.toggle('active', t === tab);
       });
@@ -834,7 +785,7 @@
 
     async function loadMenuData() {
       try {
-        const res = await fetch('menu-data.json?v=' + Date.now());
+        const res = await fetch('menu-data.json?v=' + Date.now(), { cache: 'no-store' });
         menuData = await res.json();
         if (menuData.firebaseUrl) firebaseUrl = menuData.firebaseUrl.replace(/\/$/, '');
 
@@ -845,6 +796,13 @@
         document.getElementById('cfg-gst').value = menuData.gstPercent ?? 5;
         document.getElementById('cfg-sc').value = menuData.serviceChargePercent ?? 5;
         document.getElementById('cfg-welcome').value = menuData.welcomeMessage || '';
+
+        if (menuData.happyHour) {
+          document.getElementById('hh-enabled').value = String(menuData.happyHour.enabled !== false);
+          document.getElementById('hh-percent').value = menuData.happyHour.discountPercent ?? 15;
+          document.getElementById('hh-start').value = menuData.happyHour.startHour ?? 16;
+          document.getElementById('hh-end').value = menuData.happyHour.endHour ?? 19;
+        }
 
         const catNames = (menuData.categories || []).map(c => typeof c === 'string' ? c : c.name);
         document.getElementById('item-category').innerHTML = catNames.map(c => `<option value="${c}">${c}</option>`).join('');
@@ -857,15 +815,19 @@
       }
     }
 
-    /* LIVE DASHBOARD POLLING */
+    /* LIVE POLLING: ORDERS, WAITER CALLS, STOCK & FEEDBACK */
     async function pollDashboard() {
       try {
-        const [ordersRes, callsRes] = await Promise.all([
+        const [ordersRes, callsRes, stockRes, fbRes] = await Promise.all([
           fetch(`${firebaseUrl}/orders.json`),
-          fetch(`${firebaseUrl}/waiterCalls.json`)
+          fetch(`${firebaseUrl}/waiterCalls.json`),
+          fetch(`${firebaseUrl}/inventory.json`),
+          fetch(`${firebaseUrl}/feedback.json`)
         ]);
         const ordersObj = await ordersRes.json();
         const callsObj = await callsRes.json();
+        liveStockMap = (await stockRes.json()) || {};
+        const fbObj = (await fbRes.json()) || {};
 
         const activeCalls = [];
         if (callsObj) {
@@ -884,6 +846,7 @@
         renderWaiterAlerts(activeCalls);
 
         const activeOrders = [];
+        const allPaidOrders = [];
         let unpaidSum = 0;
         let todayPaidSum = 0;
         const startOfToday = new Date().setHours(0, 0, 0, 0);
@@ -891,8 +854,9 @@
 
         if (ordersObj) {
           for (const [key, val] of Object.entries(ordersObj)) {
-            if (val.status === 'paid' && val.createdAt >= startOfToday) {
-              todayPaidSum += Number(val.total || 0);
+            if (val.status === 'paid') {
+              allPaidOrders.push(val);
+              if (val.createdAt >= startOfToday) todayPaidSum += Number(val.total || 0);
             }
             if (val.status !== 'paid' && val.status !== 'cancelled') {
               activeOrders.push({ key, ...val });
@@ -917,6 +881,8 @@
 
         renderLiveOrders(activeOrders);
         renderTablesBoard(activeOrders);
+        renderAnalytics(allPaidOrders, fbObj);
+        renderAdminMenuList();
       } catch (e) {}
     }
 
@@ -928,7 +894,7 @@
         return `
           <div class="waiter-alert-box">
             <div>
-              <div style="font-weight:800; font-size:0.96rem; color:#fca5a5;">🔔 WAITER NEEDED — TABLE ${c.table}</div>
+              <div style="font-weight:800; font-size:0.95rem; color:#fca5a5;">🔔 WAITER NEEDED — TABLE ${c.table}</div>
               <div style="font-size:0.78rem; color:#fee2e2;">${c.reason}${c.customNote ? ' • "' + c.customNote + '"' : ''} (${timeStr})</div>
             </div>
             <button class="dismiss-btn" onclick="dismissCall('${c.key}', ${c.table})">Resolve ✓</button>
@@ -960,25 +926,30 @@
         return `
           <div class="order-card liquid-glass ${o.priority ? 'priority' : ''}">
             <div class="order-head">
-              <div style="display:flex; align-items:center; gap:8px; flex-wrap:wrap;">
+              <div style="display:flex; align-items:center; gap:7px; flex-wrap:wrap;">
                 <span class="table-pill">TABLE ${o.table}</span>
                 ${o.orderNumber ? `<span style="font-size:0.74rem; font-weight:700; color:var(--gold-light);">#${o.orderNumber}</span>` : ''}
                 <span class="pay-tag">${o.paymentPreference || 'Cash at Counter'}</span>
-                <span style="font-size:0.72rem; color:var(--text-secondary);">⏱ ${minsAgo}m ago</span>
+                ${o.splitGuests > 1 ? `<span class="pay-tag">Split ×${o.splitGuests}</span>` : ''}
+                <span style="font-size:0.72rem; color:var(--text-secondary);">⏱ ${minsAgo}m</span>
               </div>
               <div style="font-weight:800; font-size:1.05rem; color:var(--gold-light);">₹${o.total}</div>
             </div>
 
-            <div class="order-items">
+            <div style="margin-bottom:12px; font-size:0.86rem;">
               ${(o.items || []).map(i => `
-                <div class="order-item-row">
-                  <span><strong>${i.qty}×</strong> ${i.name}</span>
-                  <span style="color:var(--text-secondary);">₹${i.price * i.qty}</span>
+                <div style="padding:4px 0;">
+                  <div style="display:flex; justify-content:space-between;">
+                    <span><strong>${i.qty}×</strong> ${i.name} ${i.spice && i.spice !== 'Regular' ? `<span style="color:#fbbf24; font-size:0.72rem;">(${i.spice})</span>` : ''}</span>
+                    <span style="color:var(--text-secondary);">₹${i.price * i.qty}</span>
+                  </div>
+                  ${(i.addons && i.addons.length) ? `<div style="font-size:0.72rem; color:var(--gold-light);">+ ${i.addons.join(', ')}</div>` : ''}
+                  ${i.dishNote ? `<div style="font-size:0.72rem; color:#fcd34d;">Note: "${i.dishNote}"</div>` : ''}
                 </div>
               `).join('')}
             </div>
 
-            ${o.note ? `<div class="note-banner">📝 Guest Note: ${o.note}</div>` : ''}
+            ${o.note ? `<div style="background:rgba(245,158,11,0.14); border-left:3px solid #f59e0b; padding:8px 10px; font-size:0.78rem; color:#fcd34d; border-radius:8px; margin-bottom:12px;">📝 Table Note: ${o.note}</div>` : ''}
 
             <div class="stage-buttons">
               <button class="stage-btn ${o.status === 'got_it' ? 'active-got_it' : ''}" onclick="setOrderStatus('${o.key}', 'got_it')">1. Got It</button>
@@ -1009,13 +980,32 @@
     }
 
     async function markOrderPaid(key, tableNum, total) {
+      const order = latestOrdersMap[key];
       await fetch(`${firebaseUrl}/orders/${key}.json`, {
         method: 'PATCH',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ status: 'paid', paymentStatus: 'Paid', paidAt: Date.now() })
       });
+
+      // AUTOMATED INVENTORY STOCK DEDUCTION
+      if (order && order.items && menuData) {
+        const stockPatch = {};
+        order.items.forEach(orderedItem => {
+          const menuDish = menuData.items.find(m => m.id === orderedItem.id);
+          const currentStock = liveStockMap[orderedItem.id] !== undefined
+            ? Number(liveStockMap[orderedItem.id])
+            : Number((menuDish && menuDish.stock) ?? 30);
+          stockPatch[orderedItem.id] = Math.max(0, currentStock - Number(orderedItem.qty || 1));
+        });
+        await fetch(`${firebaseUrl}/inventory.json`, {
+          method: 'PATCH',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(stockPatch)
+        });
+      }
+
       logAdminAction(`Confirmed ₹${total} counter payment for Table ${tableNum}`);
-      showToast(`Table ${tableNum} order closed & marked Paid!`);
+      showToast(`Table ${tableNum} closed & stock updated!`);
       pollDashboard();
     }
 
@@ -1041,7 +1031,7 @@
       pollDashboard();
     }
 
-    /* TABLE MANAGEMENT */
+    /* VISUAL FLOOR PLAN */
     function renderTablesBoard(activeOrders) {
       const count = (menuData && menuData.tableCount) || 12;
       const board = document.getElementById('tables-board');
@@ -1053,17 +1043,19 @@
         const isDisabled = disabledTables.includes(i);
         let statusText = 'Available';
         let statusCls = 'ts-avail';
+        let tileCls = '';
 
         if (isDisabled) { statusText = 'Disabled'; statusCls = 'ts-off'; }
-        else if (tOrders.some(o => o.status === 'payment_time' || o.status === 'done')) { statusText = 'Awaiting Pay'; statusCls = 'ts-pay'; }
-        else if (tOrders.length > 0) { statusText = `Occupied (${tOrders.length})`; statusCls = 'ts-busy'; }
+        else if (tOrders.some(o => o.status === 'payment_time' || o.status === 'done')) { statusText = 'Awaiting Pay'; statusCls = 'ts-pay'; tileCls = 'pay'; }
+        else if (tOrders.length > 0) { statusText = `Occupied (${tOrders.length})`; statusCls = 'ts-busy'; tileCls = 'busy'; }
 
         html += `
-          <div class="t-tile liquid-glass">
-            <div style="font-weight:800; font-size:0.95rem;">Table ${i}</div>
+          <div class="t-tile liquid-glass ${tileCls}">
+            <div style="font-size:1.1rem; margin-bottom:2px;">🪑</div>
+            <div style="font-weight:800; font-size:0.92rem;">Table ${i}</div>
             <div class="t-status-pill ${statusCls}">${statusText}</div>
             <div>
-              <button class="glass-pill-btn" style="font-size:0.68rem; padding:5px 10px;" onclick="toggleTableDisabled(${i})">
+              <button class="glass-pill-btn" style="font-size:0.66rem; padding:4px 9px;" onclick="toggleTableDisabled(${i})">
                 ${isDisabled ? 'Enable' : 'Disable'}
               </button>
             </div>
@@ -1074,11 +1066,8 @@
     }
 
     function toggleTableDisabled(tableNum) {
-      if (disabledTables.includes(tableNum)) {
-        disabledTables = disabledTables.filter(t => t !== tableNum);
-      } else {
-        disabledTables.push(tableNum);
-      }
+      if (disabledTables.includes(tableNum)) disabledTables = disabledTables.filter(t => t !== tableNum);
+      else disabledTables.push(tableNum);
       localStorage.setItem('aurelia_disabled_tables', JSON.stringify(disabledTables));
       logAdminAction(`Toggled Table ${tableNum} availability`);
       pollDashboard();
@@ -1110,7 +1099,69 @@
       pollDashboard();
     }
 
-    /* MENU EDITOR & GITHUB SYNC */
+    /* SALES ANALYTICS & FEEDBACK */
+    function renderAnalytics(paidOrders, fbObj) {
+      const now = Date.now();
+      const dayStart = new Date().setHours(0, 0, 0, 0);
+      const weekAgo = now - 7 * 86400000;
+      const monthAgo = now - 30 * 86400000;
+
+      let todayRev = 0, weekRev = 0, monthRev = 0;
+      const catTotals = {};
+      const dishCounts = {};
+
+      paidOrders.forEach(o => {
+        const amt = Number(o.total || 0);
+        if (o.createdAt >= dayStart) todayRev += amt;
+        if (o.createdAt >= weekAgo) weekRev += amt;
+        if (o.createdAt >= monthAgo) monthRev += amt;
+
+        (o.items || []).forEach(it => {
+          const cat = it.category || 'Other';
+          catTotals[cat] = (catTotals[cat] || 0) + (Number(it.price || 0) * Number(it.qty || 1));
+          dishCounts[it.name] = (dishCounts[it.name] || 0) + Number(it.qty || 1);
+        });
+      });
+
+      const aov = paidOrders.length ? Math.round(monthRev / paidOrders.length) : 0;
+      document.getElementById('an-today').textContent = '₹' + todayRev;
+      document.getElementById('an-week').textContent = '₹' + weekRev;
+      document.getElementById('an-month').textContent = '₹' + monthRev;
+      document.getElementById('an-aov').textContent = '₹' + aov;
+
+      const catEntries = Object.entries(catTotals).sort((a, b) => b[1] - a[1]);
+      const maxCat = catEntries.length ? catEntries[0][1] : 1;
+      document.getElementById('an-category-bars').innerHTML = catEntries.length === 0
+        ? '<p style="color:var(--text-secondary);">Complete counter payments to populate category analytics.</p>'
+        : catEntries.map(([cat, rev]) => `
+            <div class="bar-row">
+              <div style="display:flex; justify-content:space-between;"><span>${cat}</span><strong>₹${rev}</strong></div>
+              <div class="bar-track"><div class="bar-fill" style="width:${Math.round((rev / maxCat) * 100)}%;"></div></div>
+            </div>
+          `).join('');
+
+      const dishEntries = Object.entries(dishCounts).sort((a, b) => b[1] - a[1]).slice(0, 6);
+      document.getElementById('an-top-dishes').innerHTML = dishEntries.length === 0
+        ? '<p style="color:var(--text-secondary);">No completed dish orders yet.</p>'
+        : dishEntries.map(([name, cnt], idx) => `
+            <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.06);">
+              <span><strong>#${idx + 1}</strong> ${name}</span>
+              <span style="color:var(--gold-light); font-weight:700;">${cnt} sold</span>
+            </div>
+          `).join('');
+
+      const fbList = Object.values(fbObj || {}).sort((a, b) => b.createdAt - a.createdAt).slice(0, 8);
+      document.getElementById('an-feedback-list').innerHTML = fbList.length === 0
+        ? '<p style="color:var(--text-secondary);">No guest star ratings submitted yet.</p>'
+        : fbList.map(f => `
+            <div style="display:flex; justify-content:space-between; padding:6px 0; border-bottom:1px solid rgba(255,255,255,0.06);">
+              <span>Order #${f.orderNumber} (Table ${f.table})</span>
+              <span>${'⭐'.repeat(Number(f.rating || 5))}</span>
+            </div>
+          `).join('');
+    }
+
+    /* MENU & STOCK EDITOR */
     function saveGitHubCreds() {
       localStorage.setItem('aurelia_gh_repo', document.getElementById('gh-repo').value.trim());
       localStorage.setItem('aurelia_gh_token', document.getElementById('gh-token').value.trim());
@@ -1124,21 +1175,25 @@
       const filtered = menuData.items.filter(i => !q || i.name.toLowerCase().includes(q) || i.category.toLowerCase().includes(q));
       document.getElementById('menu-count').textContent = menuData.items.length;
 
-      document.getElementById('admin-menu-list').innerHTML = filtered.map(item => `
-        <div class="menu-admin-row">
-          <div style="flex:1;">
-            <div style="font-weight:700; font-size:0.88rem;">
-              <span style="color:${item.isVeg ? '#4ade80' : '#f87171'};">●</span> ${item.name}
-              ${item.available === false ? '<span style="color:#f87171; font-size:0.7rem;">(SOLD OUT)</span>' : ''}
+      document.getElementById('admin-menu-list').innerHTML = filtered.map(item => {
+        const stockVal = liveStockMap[item.id] !== undefined ? Number(liveStockMap[item.id]) : Number(item.stock ?? 30);
+        const lowBadge = stockVal <= 5 ? `<span style="color:#f87171; font-weight:700;"> • Low Stock (${stockVal})</span>` : ` • Stock: ${stockVal}`;
+        return `
+          <div class="menu-admin-row">
+            <div style="flex:1;">
+              <div style="font-weight:700; font-size:0.86rem;">
+                <span style="color:${item.isVeg ? '#4ade80' : '#f87171'};">●</span> ${item.name}
+                ${item.recommended ? '<span style="color:var(--gold-light); font-size:0.68rem;"> ★</span>' : ''}
+              </div>
+              <div style="font-size:0.72rem; color:var(--text-secondary);">${item.category} • ₹${item.price}${lowBadge}</div>
             </div>
-            <div style="font-size:0.74rem; color:var(--text-secondary);">${item.category} • ₹${item.price}</div>
+            <div style="display:flex; gap:6px;">
+              <button class="glass-pill-btn" style="padding:5px 10px; font-size:0.7rem;" onclick="editMenuItem('${item.id}')">Edit</button>
+              <button class="dismiss-btn" style="padding:5px 10px; font-size:0.7rem;" onclick="deleteMenuItem('${item.id}')">Del</button>
+            </div>
           </div>
-          <div style="display:flex; gap:6px;">
-            <button class="glass-pill-btn" style="padding:5px 10px; font-size:0.72rem;" onclick="editMenuItem('${item.id}')">Edit</button>
-            <button class="dismiss-btn" style="padding:5px 10px; font-size:0.72rem;" onclick="deleteMenuItem('${item.id}')">Del</button>
-          </div>
-        </div>
-      `).join('');
+        `;
+      }).join('');
     }
 
     function editMenuItem(id) {
@@ -1150,13 +1205,15 @@
       document.getElementById('item-category').value = item.category;
       document.getElementById('item-price').value = item.price;
       document.getElementById('item-veg').value = String(item.isVeg);
-      document.getElementById('item-avail').value = String(item.available !== false);
+      document.getElementById('item-stock').value = liveStockMap[item.id] !== undefined ? liveStockMap[item.id] : (item.stock ?? 30);
+      document.getElementById('item-rec').value = String(Boolean(item.recommended));
       document.getElementById('item-badge').value = item.badge || '';
-      document.getElementById('item-spice').value = item.spice || 'None';
+      document.getElementById('item-allergens').value = item.allergens || '';
       document.getElementById('item-prep').value = item.prepTime || '15 mins';
+      document.getElementById('item-addons').value = (item.addOns || []).map(a => `${a.name}:${a.price}`).join(', ');
       document.getElementById('item-desc').value = item.description || '';
       document.getElementById('item-image-url').value = item.image || '';
-      window.scrollTo({ top: 120, behavior: 'smooth' });
+      window.scrollTo({ top: 100, behavior: 'smooth' });
     }
 
     function resetItemForm() {
@@ -1164,7 +1221,9 @@
       document.getElementById('edit-item-id').value = '';
       document.getElementById('item-name').value = '';
       document.getElementById('item-price').value = '';
-      document.getElementById('item-prep').value = '';
+      document.getElementById('item-stock').value = '30';
+      document.getElementById('item-allergens').value = '';
+      document.getElementById('item-addons').value = '';
       document.getElementById('item-desc').value = '';
       document.getElementById('item-image-url').value = '';
       document.getElementById('item-photo-file').value = '';
@@ -1208,17 +1267,29 @@
         } catch (e) { showToast(e.message); return; }
       }
 
+      const rawAddons = document.getElementById('item-addons').value.trim();
+      const parsedAddons = rawAddons ? rawAddons.split(',').map(pair => {
+        const [aName, aPrice] = pair.split(':');
+        return { name: (aName || '').trim(), price: Number(aPrice || 0) };
+      }).filter(a => a.name) : [];
+
+      const stockNum = Number(document.getElementById('item-stock').value) || 0;
       const editId = document.getElementById('edit-item-id').value;
+      const finalId = editId || 'dish_' + Date.now();
+
       const itemObj = {
-        id: editId || 'dish_' + Date.now(),
+        id: finalId,
         name,
         category: document.getElementById('item-category').value,
         price,
         isVeg: document.getElementById('item-veg').value === 'true',
-        available: document.getElementById('item-avail').value === 'true',
+        available: stockNum > 0,
+        stock: stockNum,
+        recommended: document.getElementById('item-rec').value === 'true',
         badge: document.getElementById('item-badge').value,
-        spice: document.getElementById('item-spice').value,
+        allergens: document.getElementById('item-allergens').value.trim() || 'None',
         prepTime: document.getElementById('item-prep').value.trim() || '15 mins',
+        addOns: parsedAddons,
         description: document.getElementById('item-desc').value.trim(),
         image: imageUrl
       };
@@ -1230,15 +1301,21 @@
         menuData.items.unshift(itemObj);
       }
 
+      await fetch(`${firebaseUrl}/inventory/${finalId}.json`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(stockNum)
+      });
+
       resetItemForm();
       renderAdminMenuList();
-      showToast('Saved locally! Tap "Publish Changes Live" to update site.');
+      showToast('Saved! Tap "Publish Changes Live" to sync menu.');
     }
 
     function deleteMenuItem(id) {
       menuData.items = menuData.items.filter(i => i.id !== id);
       renderAdminMenuList();
-      showToast('Removed. Tap "Publish Changes Live" to update site.');
+      showToast('Removed. Tap "Publish Changes Live" to sync.');
     }
 
     async function publishMenuToGitHub() {
@@ -1253,6 +1330,13 @@
       menuData.gstPercent = Number(document.getElementById('cfg-gst').value) || 0;
       menuData.serviceChargePercent = Number(document.getElementById('cfg-sc').value) || 0;
       menuData.welcomeMessage = document.getElementById('cfg-welcome').value.trim();
+
+      if (menuData.happyHour) {
+        menuData.happyHour.enabled = document.getElementById('hh-enabled').value === 'true';
+        menuData.happyHour.discountPercent = Number(document.getElementById('hh-percent').value) || 15;
+        menuData.happyHour.startHour = Number(document.getElementById('hh-start').value) || 16;
+        menuData.happyHour.endHour = Number(document.getElementById('hh-end').value) || 19;
+      }
 
       try {
         showToast('Publishing to GitHub...');
@@ -1269,7 +1353,7 @@
         });
 
         if (!putRes.ok) throw new Error('GitHub update failed. Check token permissions.');
-        logAdminAction('Published menu & settings to live site');
+        logAdminAction('Published menu, stock & promo settings live');
         showToast('🚀 Published! Live site updates in ~30 seconds.');
         renderTableQRs();
       } catch (e) { showToast(e.message); }
