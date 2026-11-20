@@ -778,19 +778,21 @@
       setTimeout(() => { t.style.display = 'none'; }, 3000);
     }
 
-    async function init() {
+        async function init() {
       try {
-        const res = await fetch('menu-data.json?v=' + Date.now());
+        const res = await fetch('menu-data.json?v=' + Date.now(), { cache: 'no-store' });
+        if (!res.ok) throw new Error('HTTP ' + res.status);
         menuData = await res.json();
         if (menuData.firebaseUrl) firebaseUrl = menuData.firebaseUrl.replace(/\/$/, '');
+        if (menuData.waiterCooldownMinutes) cooldownMs = Number(menuData.waiterCooldownMinutes) * 60 * 1000;
 
-        document.getElementById('w-cafe-name').textContent = menuData.cafeName;
-        document.getElementById('w-tagline').textContent = menuData.tagline;
-        document.getElementById('w-message').textContent = menuData.welcomeMessage;
-        document.getElementById('h-cafe-name').textContent = menuData.cafeName;
-        document.getElementById('h-tagline').textContent = menuData.tagline;
+        document.getElementById('w-cafe-name').textContent = menuData.cafeName || 'AURELIA ROAST';
+        document.getElementById('w-tagline').textContent = menuData.tagline || 'ROYAL INDIAN KITCHEN. CURATED DINING.';
+        document.getElementById('w-message').textContent = menuData.welcomeMessage || '';
+        document.getElementById('h-cafe-name').textContent = menuData.cafeName || 'AURELIA ROAST';
+        document.getElementById('h-tagline').textContent = menuData.tagline || '';
       } catch (e) {
-        showToast('Could not load menu-data.json');
+        showToast('Retrying menu load...');
       }
 
       const params = new URLSearchParams(window.location.search);
@@ -802,7 +804,8 @@
       else if (savedTable >= 1 && savedTable <= count) selectedTable = savedTable;
 
       renderTableGrid(count);
-      renderCategoryPills();
+      updateHeroBanner('All');
+      renderCategoryCards();
       renderMenu();
       updateCartUI();
       startCooldownTicker();
@@ -823,7 +826,7 @@
       }
     }
 
-    function enterCafe() {
+    async function enterCafe() {
       sessionStorage.setItem('aurelia_table', selectedTable);
       document.getElementById('active-table-num').textContent = selectedTable;
       document.getElementById('orders-table-label').textContent = selectedTable;
@@ -833,11 +836,20 @@
       document.getElementById('welcome-screen').style.display = 'none';
       document.getElementById('main-app').style.display = 'block';
 
+      if (!menuData) {
+        await init();
+      }
+      currentDiet = 'all';
+      currentCategory = 'All';
+      setDietSection('all');
+      renderCategoryCards();
+      renderMenu();
+
       fetchLiveOrders();
       if (pollTimer) clearInterval(pollTimer);
       pollTimer = setInterval(fetchLiveOrders, 3500);
-    }
-
+               }
+    
     function changeTable() {
       document.getElementById('main-app').style.display = 'none';
       document.getElementById('welcome-screen').style.display = 'flex';
